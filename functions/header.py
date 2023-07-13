@@ -65,7 +65,7 @@ def mode_selection():
     print('\t\t--------------------------------------------------')
 
     # user select mode
-    input_mode = input('\n\nPlease enter your desired number: ').replace(" ", "")
+    input_mode = input('\n\nInsert quiz mode (number): ').replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
