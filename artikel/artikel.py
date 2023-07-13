@@ -40,7 +40,7 @@ def run():
 def load_file():
     
         
-    path2work = r'/Users/jwt/Documents/Code/Deutsch/artikel'
+    path2work = r'/Users/jwt/Documents/Code/gelato/artikel'
     os.chdir(path2work)
     
     excelFile = "artikel.xlsx"
@@ -56,8 +56,6 @@ def load_file():
     
     
     return dataframeObject
-
-
 
 
 
@@ -85,9 +83,6 @@ def qna_section(dataframeObject):
     return
 
 
-
-
-
 def set_number(questions, answers):
     
     max_questions = len(questions)
@@ -108,46 +103,36 @@ def set_number(questions, answers):
 def ask_questions(questions, answers, wrong_questions, wrong_answers):
     
     
+    query = questions[0] + ': '
     
-    
-    
-    
-    
-    
-    
-    return
-    
-    
-    
-    
-    
-    # isWrong = False
-    
-    # for ii, q in enumerate(questions):
+    for ii, q in enumerate(questions):
         
-    #     if isWrong:
-    #         query =  q  + ': aa'
-    #         # print('a')
-    #     # always begin with this
-    #     else:
-    #         query = '\033[1A\033[2K' + q  + ': ssds'
-    #         # print('b')
+        user_answer = input(query).replace(" ","")
+        
+        # if the answer is correct, overwrite the NEXT question on the same line
+        if user_answer == answers[ii].replace(" ",""):
+            # special case if it is the last index, stop query.
+            if (ii+1) == len(questions):
+                print('\033[1A\033[2K\033[1A')
+                return wrong_questions, wrong_answers
+            # if there is no overflow, overwrite with new query.
+            else:
+                query = '\033[1A\033[2K' + questions[ii+1] + ': '
+        # if the answer is wrong, delete the query and reprint with incorrect.
+        else:
+            # record wrong pairs
+            wrong_questions.append(questions[ii])
+            wrong_answers.append(answers[ii])
+            # special case if it is the last index, stop query.
+            if (ii+1) == len(questions):
+                print('\033[1A\033[2K'+ q + ': ' + user_answer + ' (Incorrect)')
+                return wrong_questions, wrong_answers
+            else:
+                print('\033[1A\033[2K'+ q + ': ' + user_answer + ' (Incorrect)')
+                query = questions[ii+1] + ': '
             
-    #     users_answer = input(query).replace(" ", "")
-        
-    #     isWrong = (users_answer != answers[ii].replace(" ", ""))
-        
-    #     if isWrong:
-    #         wrong_questions.append(questions[ii])
-    #         wrong_answers.append(answers[ii])
-    #         if len(questions) != 1:
-    #             print('\033[1A\033[2K' + q  + ': ' + users_answer + "d (Incorrect)")
-    #         else:
-    #             sys.stdout.flush()
-    #             print('\033[2K' + q  + ': ' + users_answer + "e (Incorrect)")
-        
-    # return wrong_questions, wrong_answers
-
+    return wrong_questions, wrong_answers
+    
 
 
 def randomiser(questions, answers):
@@ -159,10 +144,6 @@ def randomiser(questions, answers):
     answers = answers[indices]
     
     return questions, answers
-
-
-
-# run()
 
 
 #  problem, when list ias of length 1, it does not show (incorrect).
