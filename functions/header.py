@@ -5,6 +5,9 @@ Created on Wed Jul 12 13:37:22 2023
 
 @author: Jia Wei Teh
 """
+import time
+import sys
+from artikel import artikel
 
 def display(style = '1'):
     
@@ -51,5 +54,36 @@ def cone2():
                                      
     """)
     
+def mode_selection():
     
+    modes_dict = {'1': 'Artikel',
+                  '2': 'Nouns',
+                  '0': 'Exit'
+                  }
+    for key, value in modes_dict.items():
+        print('\t\t'+str(key)+':', value)
+    print('\t\t--------------------------------------------------')
+
+    # user select mode
+    input_mode = input('\n\nPlease enter your desired number: ').replace(" ", "")
+    # some sleep so that the output is not too quick
+    time.sleep(.25)
+    # check if modes exist
+    if input_mode in list(modes_dict.keys()):
+        true_mode = modes_dict[input_mode]
+        modeExist = True
+    else:
+        modeExist = False
+    # mode cases
+    if modeExist:
+        if input_mode == '1':
+            print('\nEntering the \"'+true_mode+'\" mode....')
+            time.sleep(.75)
+            artikel.run()
+        elif input_mode == '2':
+            print('Woops! Section TBD.')
+        elif input_mode == '0':
+            sys.exit('Program ended.')
+    else:
+        print(f'Mode \"{input_mode}\" not recognised. Ending program!')
     return
