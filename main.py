@@ -45,7 +45,7 @@ if modeExist:
 else:
     print(f'Mode \"{input_mode}\" not recognised. Ending program!')
 
-print('Exiting program...')
+print('Exiting GELATO...')
 
 
 # TODO: make this into shell script, to include italics and colours.
@@ -55,10 +55,3 @@ print('Exiting program...')
 
 
 # make user enter only 1, 2, or 3. 
-
-
-
-
-
-import sys
-
