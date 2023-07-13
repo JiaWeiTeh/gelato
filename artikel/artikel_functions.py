@@ -122,12 +122,11 @@ def ask_questions(questions, answers, wrong_questions, wrong_answers):
             # record wrong pairs
             wrong_questions.append(questions[ii])
             wrong_answers.append(answers[ii])
+            print('\033[1A\033[2K' + q + ': ' + user_answer + ' (Incorrect)')
             # special case if it is the last index, stop query.
             if (ii+1) == len(questions):
-                print(q + ': ' + user_answer + ' (Incorrect)')
                 return wrong_questions, wrong_answers
             else:
-                print('\033[1A\033[2K'+ q + ': ' + user_answer + ' (Incorrect)')
                 query = questions[ii+1] + ': '
             
     return wrong_questions, wrong_answers
