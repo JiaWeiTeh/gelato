@@ -77,7 +77,7 @@ def mode_selection():
     # mode cases
     if modeExist:
         if input_mode == '1':
-            print('\nEntering the \"'+true_mode+'\" mode....')
+            print('\nEntering the \"'+true_mode+'\" mode....\n')
             time.sleep(.75)
             artikel.run()
         elif input_mode == '2':

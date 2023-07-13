@@ -4,6 +4,8 @@
 Created on Tue Jul 11 20:52:59 2023
 
 @author: Jia Wei Teh
+
+This script contains the main tool for running the 'Artikel' mode.
 """
 
 import pandas as pd
@@ -21,7 +23,7 @@ def run():
         # Displaying the dataframe object
         pd.set_option('display.width', 500)
         # if users want to have a peek at the dictionary
-        question_dictionary = '\nDisplay wordbase before quiz begins?'
+        question_dictionary = 'Display wordbase before quiz begins?'
         # defualt = 'yes'
         seeDict = query.yes_no(question_dictionary, 'no')
         # if yes, show.
