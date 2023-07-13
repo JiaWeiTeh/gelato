@@ -31,7 +31,7 @@ def run():
         # create QnA section
         artikel_functions.qna_section(dataframeObject)
         # rerun?
-        rerun_message = 'Congratulations! You have completed the full exercise correctly. Re-do the exercises?'
+        rerun_message = 'Congratulations! You have completed the full exercise. Re-do the exercises?'
         isRerun = query.yes_no(rerun_message, 'no')
         # if not rerun, exit the program.
         if not isRerun:
@@ -43,17 +43,11 @@ def run():
 
 # TODO:s
 
-# if correct, dont show again.
-# if wrong, show again, but not immediately after. if it is the last, 
-# then get a random one/ up to 3, then show it again.
-
-# ability to set how many questions you will be asked.
 
 # at the end show the time taken, show the accuracy.
 
 # show how well you have done.
 
 # if streak, then say you are in streak.
-
 
 # for nounds, can allow users to pick from three meanins.

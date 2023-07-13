@@ -46,11 +46,18 @@ def qna_section(dataframeObject):
     # initialise list for wrong answers
     wrong_questions, wrong_answers = [], []
 
-    print('\nWas ist der richtige Artikel für dieses Nomen?')
+    print('\n______________________________________________')
+    print('Was ist der richtige Artikel für dieses Nomen?')
 
+    incorrect_counter = True
     # loop through lists until all questions are answered correctly.
     while True:
         wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
+        if incorrect_counter:
+            questions_wrong = int(len(questions) - len(wrong_questions))
+            total_length = len(questions)
+            precentage = int(questions_wrong/len(questions)*100)
+            incorrect_counter = False
         if wrong_questions:
             # update list into new ones
             questions, answers = wrong_questions, wrong_answers
@@ -59,7 +66,11 @@ def qna_section(dataframeObject):
             questions, answers = randomiser(np.array(questions), np.array(answers))
         else:
             break
+    # score
+    print(f'You scored {questions_wrong}/{total_length} ({precentage}%).')
+    
     return
+
 
 
 def set_number(questions, answers):
@@ -113,7 +124,7 @@ def ask_questions(questions, answers, wrong_questions, wrong_answers):
             wrong_answers.append(answers[ii])
             # special case if it is the last index, stop query.
             if (ii+1) == len(questions):
-                print('\033[1A\033[2K'+ q + ': ' + user_answer + ' (Incorrect)')
+                print(q + ': ' + user_answer + ' (Incorrect)')
                 return wrong_questions, wrong_answers
             else:
                 print('\033[1A\033[2K'+ q + ': ' + user_answer + ' (Incorrect)')
@@ -131,3 +142,11 @@ def randomiser(questions, answers):
     answers = answers[indices]
     
     return questions, answers
+
+
+
+
+
+
+
+
