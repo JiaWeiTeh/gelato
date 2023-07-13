@@ -35,7 +35,7 @@ else:
 message = '\nEntering the \"'
 if modeExist:
     if input_mode == '1':
-        print(message+true_mode+'\" mode....\n')
+        print(message+true_mode+'\" mode....')
         time.sleep(.75)
         artikel.run()
     elif input_mode == '2':
@@ -45,7 +45,7 @@ if modeExist:
 else:
     print(f'Mode \"{input_mode}\" not recognised. Ending program!')
 
-print('Exiting GELATO...')
+print('\nExiting GELATO...')
 
 
 # TODO: make this into shell script, to include italics and colours.
@@ -55,3 +55,13 @@ print('Exiting GELATO...')
 
 
 # make user enter only 1, 2, or 3. 
+
+
+
+
+
+
+
+
+
+
