@@ -5,10 +5,8 @@ Created on Tue Jul 11 20:52:44 2023
 
 @author: Jia Wei Teh
 
-This is the main file, which the user can change modes. 
+This is the main file.
 """
-
-
 import functions.header as header
 
 # display header

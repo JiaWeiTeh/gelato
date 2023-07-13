@@ -39,6 +39,7 @@ def qna_section(dataframeObject):
     # get keys and values
     questions = np.array(dictionary['Noun'])
     answers = np.array(dictionary['Artikel'])
+    tag = np.array(dictionary['Tag'])
     # randomise for QnA
     questions, answers = randomiser(questions, answers)
     # set number of questions
@@ -53,23 +54,51 @@ def qna_section(dataframeObject):
     # loop through lists until all questions are answered correctly.
     while True:
         wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
-        if incorrect_counter:
-            questions_wrong = int(len(questions) - len(wrong_questions))
-            total_length = len(questions)
-            precentage = int(questions_wrong/len(questions)*100)
-            incorrect_counter = False
-        if wrong_questions:
+        # Right after the first loop, record the wrong answers for analysis.
+        # If nothing is wrong, finish.
+        if not wrong_questions:
+            if incorrect_counter:
+                # calculate the score
+                questions_right = int(len(questions) - len(wrong_questions))
+                total_length = len(questions)
+                precentage = int(questions_right/len(questions)*100)
+            break
+        else:
+            # If something is wrong, run this part only once
+            if incorrect_counter:
+                # calculate the score
+                questions_right = int(len(questions) - len(wrong_questions))
+                total_length = len(questions)
+                precentage = int(questions_right/len(questions)*100)
+                # provide extra analysis
+                analysis_message = get_analysis(wrong_questions, wrong_answers)
+                # shutdown 
+                incorrect_counter = False
+                
             # update list into new ones
             questions, answers = wrong_questions, wrong_answers
             wrong_questions, wrong_answers = [], []
             # randomise again
             questions, answers = randomiser(np.array(questions), np.array(answers))
-        else:
-            break
     # score
-    print(f'You scored {questions_wrong}/{total_length} ({precentage}%).')
+    print(f'You scored {questions_right}/{total_length} ({precentage}%).')
+    if precentage != 100:
+        print('Correct answers for parts where you got wrong:')
+        print(analysis_message+"\033[39m")
     
     return
+
+
+
+def get_analysis(wrong_questions, wrong_answers):
+    
+    message = ""
+    
+    for artikel, noun in list(zip(wrong_answers, wrong_questions)):
+        message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\n"
+    
+    return message
+
 
 
 
