@@ -14,7 +14,7 @@ def yes_no(question, default = "yes"):
     good_answers = {"yes": True,
                     "y": True,
                     "ja": True,
-                    "hao": False,
+                    "hao": True,
                     "no": False,
                     "n": False,
                     "nein": False,

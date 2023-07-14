@@ -17,10 +17,9 @@ import sys
 def load_file():
         
     # make sure the working directory is what you want
-    path2work = r'/Users/jwt/Documents/Code/gelato/artikel'
-    os.chdir(path2work)
+    path2work = os.getcwd()
     
-    excelFile = "artikel.xlsx"
+    excelFile = "./data/artikel.xlsx"
     # Reading an excel file
     excelFile = pd.read_excel(excelFile)
     
@@ -46,8 +45,7 @@ def qna_section(dataframeObject):
     questions, answers = set_number(questions, answers)
     # initialise list for wrong answers
     wrong_questions, wrong_answers = [], []
-
-    print('\n______________________________________________')
+    print('   ' + '\u2500'*12 + "# Begin quiz #" + '\u2500'*12)
     print('Was ist der richtige Artikel für dieses Nomen?')
 
     incorrect_counter = True
@@ -85,7 +83,7 @@ def qna_section(dataframeObject):
     if precentage != 100:
         print('Correct answers for parts where you got wrong:')
         print(analysis_message+"\033[39m")
-    
+    print('    ' + '\u2500'*12 + "# End quiz #" + '\u2500'*12)
     return
 
 
@@ -93,13 +91,14 @@ def qna_section(dataframeObject):
 def get_analysis(wrong_questions, wrong_answers):
     
     message = ""
-    
-    for artikel, noun in list(zip(wrong_answers, wrong_questions)):
-        message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\n"
+    # message for error answers
+    for ii, (artikel, noun) in enumerate(list(zip(wrong_answers, wrong_questions))):
+        if ii == len(wrong_answers) - 1:
+            message += "\033[33m" + artikel + " " + "\033[35m" + noun
+        else:
+            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\n"
     
     return message
-
-
 
 
 def set_number(questions, answers):
