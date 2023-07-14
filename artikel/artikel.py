@@ -10,6 +10,7 @@ This script contains the main tool for running the 'Artikel' mode.
 
 import pandas as pd
 from tabulate import tabulate
+import numpy as np
 from functions import query
 
 import artikel.artikel_functions as artikel_functions
@@ -20,7 +21,8 @@ def run():
     # loop, because users have option to keep doing, or to exit.
     while True:
         # Import data
-        dataframeObject = artikel_functions.load_file()
+        data_csv = artikel_functions.load_file()
+        dataframeObject = pd.DataFrame(data_csv)
         # Only show dictionary in the first run.
         if not isRerun:
             # Displaying the dataframe object
@@ -34,7 +36,7 @@ def run():
                 print('\nKlar! Here is a glimpse of your dictionary:\n')
                 print(tabulate(dataframeObject, headers = dataframeObject.columns, tablefmt = 'fancy_grid'))
         # create QnA section
-        artikel_functions.qna_section(dataframeObject)
+        artikel_functions.qna_section()
         # rerun?
         rerun_message = 'Congratulations! You have completed the full exercise. Re-do the exercises?'
         isRerun = query.yes_no(rerun_message, 'no')
