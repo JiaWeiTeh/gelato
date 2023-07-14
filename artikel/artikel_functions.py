@@ -10,21 +10,11 @@ This script contains functions that are used to run artikel.py
 
 import numpy as np
 import pandas as pd
-import os
-import time
-import sys
-
-
-
-
 
 def load_file():
         
-    # make sure the working directory is what you want
-    path2work = os.getcwd()
-    
-    excelFile = "./data/artikel.xlsx"
     # Reading an excel file
+    excelFile = "./data/artikel.xlsx"
     excelFile = pd.read_excel(excelFile)
     # Update excel file into CSV file
     excelFile.to_csv("./data/artikel.csv", index = None, header=True)
