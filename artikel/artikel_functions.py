@@ -14,6 +14,10 @@ import os
 import time
 import sys
 
+
+
+
+
 def load_file():
         
     # make sure the working directory is what you want
@@ -22,26 +26,26 @@ def load_file():
     excelFile = "./data/artikel.xlsx"
     # Reading an excel file
     excelFile = pd.read_excel(excelFile)
-    
     # Update excel file into CSV file
-    excelFile.to_csv("artikel.csv", index = None, header=True)
-    
+    excelFile.to_csv("./data/artikel.csv", index = None, header=True)
     # Reading and Converting the output csv file into a dataframe object
-    dataframeObject = pd.DataFrame(pd.read_csv("artikel.csv", skiprows = [1]))
+    data_csv = pd.read_csv("./data/artikel.csv", skip_blank_lines = True, skiprows= [0], header = None)
     
-    return dataframeObject
+    return data_csv
 
-def qna_section(dataframeObject):
+
+def qna_section():
     
+    # read csv
+    data_full = np.genfromtxt('./data/artikel.csv', delimiter=',', encoding="utf8", dtype = None)
+    data_array = data_full[1:]
+    header_array = data_full[0]
     # convert dictionary to list
-    dictionary = dataframeObject.to_dict('list')
     # get keys and values
-    questions = np.array(dictionary['Noun'])
-    answers = np.array(dictionary['Artikel'])
-    tag = np.array(dictionary['Tag'])
     # randomise for QnA
-    questions, answers = randomiser(questions, answers)
+    data_array = randomiser(data_array)
     # set number of questions
+    questions, answers = data_array[:,1], data_array[:,0]
     questions, answers = set_number(questions, answers)
     # initialise list for wrong answers
     wrong_questions, wrong_answers = [], []
@@ -69,7 +73,7 @@ def qna_section(dataframeObject):
                 total_length = len(questions)
                 precentage = int(questions_right/len(questions)*100)
                 # provide extra analysis
-                analysis_message = get_analysis(wrong_questions, wrong_answers)
+                analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
                 # shutdown 
                 incorrect_counter = False
                 
@@ -88,15 +92,17 @@ def qna_section(dataframeObject):
 
 
 
-def get_analysis(wrong_questions, wrong_answers):
+def get_analysis(wrong_questions, wrong_answers, data_array):
     
     message = ""
     # message for error answers
     for ii, (artikel, noun) in enumerate(list(zip(wrong_answers, wrong_questions))):
+        # add meaning
+        meaning = data_array[np.where(data_array[:,1] == wrong_questions)[0][0]][2]
         if ii == len(wrong_answers) - 1:
-            message += "\033[33m" + artikel + " " + "\033[35m" + noun
+            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\033[39m (" + meaning + ")"
         else:
-            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\n"
+            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\033[39m (" + meaning + ")\n"
     
     return message
 
@@ -160,19 +166,23 @@ def ask_questions(questions, answers, wrong_questions, wrong_answers):
     return wrong_questions, wrong_answers
 
 
-def randomiser(questions, answers):
+def randomiser(*args):
     # randomise indices
-    indices = np.arange(questions.shape[0])
-    np.random.shuffle(indices)
-    # re-order array with indices
-    questions = questions[indices]
-    answers = answers[indices]
-    
-    return questions, answers
-
-
-
-
+    if len(args) == 1:
+        array = args[0]
+        indices = np.arange(array.shape[0])
+        np.random.shuffle(indices)
+        # re-order array with indices
+        array = array[indices]
+        return array
+    else:
+        questions, answers = args
+        indices = np.arange(questions.shape[0])
+        np.random.shuffle(indices)
+        # re-order array with indices
+        questions = questions[indices]
+        answers = answers[indices]
+        return questions, answers        
 
 
 
