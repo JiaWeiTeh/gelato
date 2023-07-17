@@ -17,3 +17,9 @@ Created on Fri Jul 14 16:42:59 2023
 
 
 # artikel modes, one that answer as many as possible in 1 minute, but only three lives.
+
+
+
+
+
+# change number of lives.

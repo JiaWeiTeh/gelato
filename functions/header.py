@@ -57,12 +57,13 @@ def cone2():
 def mode_selection():
     
     modes_dict = {'1': 'Artikel',
-                  '2': 'Noun',
+                  '2': 'Artikel (Challenge)',
                   '3': 'Settings',
                   '0': 'Exit'
                   }
     for key, value in modes_dict.items():
         print('\t\t'+str(key)+':', value)
+    print('\t\tIf you wish to quit at any time, just press CRTL+C')
     print('\t\t--------------------------------------------------')
 
     # user select mode
@@ -82,7 +83,9 @@ def mode_selection():
             time.sleep(.75)
             artikel.run()
         elif input_mode == '2':
-            print('Woops! Section TBD.')
+            print('\nEntering the \"'+true_mode+'\" mode....\n')
+            time.sleep(.75)
+            artikel.run(survival=True)        
         elif input_mode == '3':
             print('Woops! Section TBD.')
         elif input_mode == '0':
