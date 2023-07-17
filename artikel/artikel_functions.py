@@ -39,9 +39,9 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
     
     # enter timed mode. Default is 1 minute and 3 lifes.
     if survival:
-        questions, answers = set_number(questions, answers)
+        # questions, answers = set_number(questions, answers)
         current_hearts = survival_hearts
-        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
+        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
         print('Was ist der richtige Artikel für dieses Nomen?')
         # survival score
         survival_score = 0
@@ -121,7 +121,7 @@ def get_analysis(wrong_questions, wrong_answers, data_array):
     for ii, (artikel, noun) in enumerate(list(zip(wrong_answers, wrong_questions))):
         # add translation
         translation = data_array[np.where(data_array[:,1] == wrong_questions[ii])[0][0]][2]
-        message += "\033[33m{:<4}\033[35m{:<8}\033[39m{:<20}\033[39m\n".format(artikel, noun, "["+translation+"]")
+        message += "\033[33m{:<4}\033[35m{:<8}\033[39m{:>15}\033[39m\n".format(artikel, noun, "["+translation+"]")
     
     return message
 
