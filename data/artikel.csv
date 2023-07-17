@@ -1,13 +1,13 @@
 Artikel,Noun,Meaning,Tag
-das,Kind,Child,Family
-die,Kinder,Children,Family
-die,Cousine,Cousin,Family
-der ,Bruder,Brother,Family
-die ,Schwester,Sister,Family
-die ,Mutter,Mother,Family
-der ,Vater,Father,Family
-die ,Tante,Aunt,Family
-der,Onkel,Uncle,Family
+das,Kind,Child,Familie
+die,Kinder,Children,Familie
+die,Cousine,Cousin,Familie
+der ,Bruder,Brother,Familie
+die ,Schwester,Sister,Familie
+die ,Mutter,Mother,Familie
+der ,Vater,Father,Familie
+die ,Tante,Aunt,Familie
+der,Onkel,Uncle,Familie
 das,Ramen,Ramen,Foods
 das,Gesicht,Face,Gesicht
 der,Kaffee,Coffee,Drinks
@@ -51,3 +51,22 @@ das,Ketchup,Ketchup,Würzmittel und Soßen
 der,Senf,Mustard,Würzmittel und Soßen
 die,Mayonnaise,Mayonnaise,Würzmittel und Soßen
 die,Sojasoße,Soy sauce,Würzmittel und Soßen
+die,Schere,Scissors,Bürobedarf
+der,Textmarker,Highlighter,Bürobedarf
+der,Stiftehalter,Pen holder,Bürobedarf
+das,Notizbuch,Notebook,Bürobedarf
+der,Bleistift,Pencil,Bürobedarf
+die,Büroklammer,Paperclip,Bürobedarf
+der,Kugelschreiber,Ballpoint pen,Bürobedarf
+der,Radiergummi,Eraser,Bürobedarf
+der,Haftstreifen,Binder,Bürobedarf
+der,Bleistiftspitzer,Pencil sharpener,Bürobedarf
+der,Tesafilm,Cellophane/scotch tape,Bürobedarf
+der,Tacker,Staple,Bürobedarf
+der,Locher,Perforator/puncher,Bürobedarf
+das,Tipp-Ex,Correction tape,Bürobedarf
+der,Ordner,Folder,Bürobedarf
+der,Brieföffner,Letter opener,Bürobedarf
+die,Reißzwecke,Thumbtack,Bürobedarf
+der,Papierkorb,Waste paper bin,Bürobedarf
+die,Pinnwand,Bulletin board,Bürobedarf
