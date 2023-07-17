@@ -241,6 +241,7 @@ def print_hearts(max_hearts, current_hearts):
 
 
 def randomiser(*args):
+    # Hardcoded - accepts only either the entire DataFrame, or a question-answer tuple.
     # randomise indices
     if len(args) == 1:
         array = args[0]
