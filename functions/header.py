@@ -16,7 +16,7 @@ def display(style = '1'):
     print('\t\tThis is a (quirky) Python code written by Jia Wei.')
     print('\t\t[Version 1.2] July 2023. All rights reserved.\n\n')
     print('\t\t--------------------------------------------------')
-    print('\t\tThese are the available learning modes for GELATO:\n')
+    print('\t\tHere are the available learning modes for GELATO:\n')
 
     return
 
@@ -63,7 +63,7 @@ def mode_selection():
                   }
     for key, value in modes_dict.items():
         print('\t\t'+str(key)+':', value)
-    print('\t\tIf you wish to quit at any time, just press CRTL+C')
+    print('\t\tIf you wish to quit at any time, press CRTL+C')
     print('\t\t--------------------------------------------------')
 
     # user select mode

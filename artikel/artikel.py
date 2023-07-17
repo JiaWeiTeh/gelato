@@ -28,12 +28,12 @@ def run(survival = False):
             # Displaying the dataframe object
             pd.set_option('display.width', 500)
             # if users want to have a peek at the dictionary
-            question_dictionary = 'Display wordbase before quiz begins?'
+            question_dictionary = 'Would you like to review the database before the quiz starts?'
             # defualt = 'yes'
             seeDict = query.yes_no(question_dictionary, 'no')
             # if yes, show.
             if seeDict:
-                print('\nKlar! Here is a glimpse of your dictionary:\n')
+                print('\nKlar! Here is a preview of your dictionary:\n')
                 print(tabulate(dataframeObject, headers = ["Artikel", "Noun", "Translation", "Tag"], tablefmt = 'fancy_grid'))
         if survival:
             artikel_functions.qna_section(survival = True)
@@ -41,7 +41,7 @@ def run(survival = False):
             # create QnA section
             artikel_functions.qna_section()
         # rerun?
-        rerun_message = 'Congratulations! You have completed the full exercise. Re-do the exercises?'
+        rerun_message = 'Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?'
         isRerun = query.yes_no(rerun_message, 'no')
         # if not rerun, exit the program.
         if not isRerun:
