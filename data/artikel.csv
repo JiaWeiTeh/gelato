@@ -9,21 +9,45 @@ der ,Vater,Father,Family
 die ,Tante,Aunt,Family
 der,Onkel,Uncle,Family
 das,Ramen,Ramen,Foods
+das,Gesicht,Face,Gesicht
 der,Kaffee,Coffee,Drinks
-das,Haar,Hair,Face
-die,Stirn,Forehead,Face
-die,Schläfe,Temple,Face
-das,Ohr,Ear,Face
-die,Wange,Cheek,Face
-die,Nase,Nose,Face
-das,Nasenloch,Nostril,Face
-der ,Zahn,Teeth,Face
-die,Wimper,Eyelash,Face
-die,Lippe,Lips,Face
-der,Mund,Mouth,Face
-das,Kinn,Chin,Face
-der ,Unterkiefer,Lower Jaw,Face
-die,Haut,Skin,Face
-das,Muttermal,Birthmark,Face
-das,Grübchen,Dimple,Face
-die,Sommersprossen,Freckles,Face
+das,Haar,Hair,Gesicht
+die,Stirn,Forehead,Gesicht
+die,Schläfe,Temple,Gesicht
+das,Ohr,Ear,Gesicht
+die,Wange,Cheek,Gesicht
+die,Nase,Nose,Gesicht
+das,Nasenloch,Nostril,Gesicht
+der ,Zahn,Teeth,Gesicht
+die,Wimper,Eyelash,Gesicht
+die,Lippe,Lips,Gesicht
+der,Mund,Mouth,Gesicht
+das,Kinn,Chin,Gesicht
+der ,Unterkiefer,Lower Jaw,Gesicht
+die,Haut,Skin,Gesicht
+das,Muttermal,Birthmark,Gesicht
+das,Grübchen,Dimple,Gesicht
+die,Sommersprossen,Freckles,Gesicht
+der,Sternanis,Star anise,Gewürze
+das,Lorbeerblatt,Bay leaf,Gewürze
+der,Koriander,Coriander,Gewürze
+die,Zimtrinde,Cinnamon bark,Gewürze
+die,Kurkuma,Turmeric,Gewürze
+das,Currypulver,Curry powder,Gewürze
+der,Paprika,Paprika,Gewürze
+die,Muskatnuss,Nutmeg,Gewürze
+der,Kardamom,Cardamom,Gewürze
+die,Nelken,Cloves,Gewürze
+der,Ingwer,Ginger,Gewürze
+die,Chiliflocken,Chilli flakes,Gewürze
+die,Chilischote,Chilli pepper,Gewürze
+der,Fenchel,Fennel,Gewürze
+der,Pfeffer,Pepper,Würzmittel und Soßen
+das,Salz,Salt,Würzmittel und Soßen
+der,Essig,Vinegar,Würzmittel und Soßen
+das,Olivenöl,Olive oil,Würzmittel und Soßen
+die,Salsa,Salsa,Würzmittel und Soßen
+das,Ketchup,Ketchup,Würzmittel und Soßen
+der,Senf,Mustard,Würzmittel und Soßen
+die,Mayonnaise,Mayonnaise,Würzmittel und Soßen
+die,Sojasoße,Soy sauce,Würzmittel und Soßen

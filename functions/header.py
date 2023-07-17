@@ -57,7 +57,8 @@ def cone2():
 def mode_selection():
     
     modes_dict = {'1': 'Artikel',
-                  '2': 'Nouns',
+                  '2': 'Noun',
+                  '3': 'Settings',
                   '0': 'Exit'
                   }
     for key, value in modes_dict.items():
@@ -81,6 +82,8 @@ def mode_selection():
             time.sleep(.75)
             artikel.run()
         elif input_mode == '2':
+            print('Woops! Section TBD.')
+        elif input_mode == '3':
             print('Woops! Section TBD.')
         elif input_mode == '0':
             sys.exit('Program ended.')

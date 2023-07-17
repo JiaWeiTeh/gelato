@@ -24,7 +24,7 @@ def load_file():
     return data_csv
 
 
-def qna_section():
+def qna_section(timed = False, survival = False, survival_life = 3, timed_mins = 1):
     
     # read csv
     data_full = np.genfromtxt('./data/artikel.csv', delimiter=',', encoding="utf8", dtype = None)
@@ -36,48 +36,96 @@ def qna_section():
     data_array = randomiser(data_array)
     # set number of questions
     questions, answers = data_array[:,1], data_array[:,0]
-    questions, answers = set_number(questions, answers)
-    # initialise list for wrong answers
-    wrong_questions, wrong_answers = [], []
-    print('   ' + '\u2500'*12 + "# Begin quiz #" + '\u2500'*12)
-    print('Was ist der richtige Artikel für dieses Nomen?')
+    
+    # enter timed mode. Default is 1 minute and 3 lifes.
+    if survival:
+        lifeRemaining = survival_life
+        wrong_questions, wrong_answers = [], []
+        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
+        print('Was ist der richtige Artikel für dieses Nomen?')
+        
+        incorrect_counter = True
+        
+        while lifeRemaining > 0:
+            wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
+            # Right after the first loop, record the wrong answers for analysis.
+            # If nothing is wrong, finish.
+            if not wrong_questions:
+                if incorrect_counter:
+                    # calculate the score
+                    questions_right = int(len(questions) - len(wrong_questions))
+                    total_length = len(questions)
+                    precentage = int(questions_right/len(questions)*100)
+                break
+            else:
+                # If something is wrong, run this part only once
+                if incorrect_counter:
+                    # calculate the score
+                    questions_right = int(len(questions) - len(wrong_questions))
+                    total_length = len(questions)
+                    precentage = int(questions_right/len(questions)*100)
+                    # provide extra analysis
+                    analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
+                    # shutdown 
+                    incorrect_counter = False
+                    
+                # update list into new ones
+                questions, answers = wrong_questions, wrong_answers
+                wrong_questions, wrong_answers = [], []
+                # randomise again
+                questions, answers = randomiser(np.array(questions), np.array(answers))
+        
+        pass
+        
+        
+        # print('\u2661\u2665')
 
-    incorrect_counter = True
-    # loop through lists until all questions are answered correctly.
-    while True:
-        wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
-        # Right after the first loop, record the wrong answers for analysis.
-        # If nothing is wrong, finish.
-        if not wrong_questions:
-            if incorrect_counter:
-                # calculate the score
-                questions_right = int(len(questions) - len(wrong_questions))
-                total_length = len(questions)
-                precentage = int(questions_right/len(questions)*100)
-            break
-        else:
-            # If something is wrong, run this part only once
-            if incorrect_counter:
-                # calculate the score
-                questions_right = int(len(questions) - len(wrong_questions))
-                total_length = len(questions)
-                precentage = int(questions_right/len(questions)*100)
-                # provide extra analysis
-                analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
-                # shutdown 
-                incorrect_counter = False
+    
+    elif not timed and not survival:
+        questions, answers = set_number(questions, answers)
+        # initialise list for wrong answers
+        wrong_questions, wrong_answers = [], []
+        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
+        print('Was ist der richtige Artikel für dieses Nomen?')
+    
+        incorrect_counter = True
+        # loop through lists until all questions are answered correctly.
+        while True:
+            wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
+            # Right after the first loop, record the wrong answers for analysis.
+            # If nothing is wrong, finish.
+            if not wrong_questions:
+                if incorrect_counter:
+                    # calculate the score
+                    questions_right = int(len(questions) - len(wrong_questions))
+                    total_length = len(questions)
+                    precentage = int(questions_right/len(questions)*100)
+                break
+            else:
+                # If something is wrong, run this part only once
+                if incorrect_counter:
+                    # calculate the score
+                    questions_right = int(len(questions) - len(wrong_questions))
+                    total_length = len(questions)
+                    precentage = int(questions_right/len(questions)*100)
+                    # provide extra analysis
+                    analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
+                    # shutdown 
+                    incorrect_counter = False
+                    
+                # update list into new ones
+                questions, answers = wrong_questions, wrong_answers
+                wrong_questions, wrong_answers = [], []
+                # randomise again
+                questions, answers = randomiser(np.array(questions), np.array(answers))
                 
-            # update list into new ones
-            questions, answers = wrong_questions, wrong_answers
-            wrong_questions, wrong_answers = [], []
-            # randomise again
-            questions, answers = randomiser(np.array(questions), np.array(answers))
+                
     # score
     print(f'You scored {questions_right}/{total_length} ({precentage}%).')
     if precentage != 100:
-        print('Correct answers for parts where you got wrong:')
-        print(analysis_message+"\033[39m")
-    print('    ' + '\u2500'*12 + "# End quiz #" + '\u2500'*12)
+        print('Correct answers for part(s) where you got wrong:')
+        print(analysis_message)
+    print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     return
 
 
@@ -87,12 +135,13 @@ def get_analysis(wrong_questions, wrong_answers, data_array):
     message = ""
     # message for error answers
     for ii, (artikel, noun) in enumerate(list(zip(wrong_answers, wrong_questions))):
-        # add meaning
-        meaning = data_array[np.where(data_array[:,1] == wrong_questions)[0][0]][2]
+        # add translation
+        translation = data_array[np.where(data_array[:,1] == wrong_questions[ii])[0][0]][2]
         if ii == len(wrong_answers) - 1:
-            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\033[39m (" + meaning + ")"
+            message += "\033[33m{:<4}\033[35m{:<8}\033[39m{:<10}\033[39m".format(artikel, noun, "["+translation+"]")
+            # message += "\033[33m" + artikel + "{:^8}" + "\033[35m" + noun + "\033[39m{:^8}[" + translation + "]\033[39m"
         else:
-            message += "\033[33m" + artikel + " " + "\033[35m" + noun + "\033[39m (" + meaning + ")\n"
+            message += "\033[33m{:<4}\033[35m{:<8}\033[39m{:<10}\n\033[39m".format(artikel, noun, "["+translation+"]")
     
     return message
 
