@@ -61,8 +61,8 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
                 # re-randomize
                 questions, answers = randomiser(questions, answers)
         # score
-        print(f'You survived {survival_score} questions (correctly)!')
-        print('Correct answers for part(s) where you got wrong:')
+        print(f'You have successfully answered {survival_score} questions correctly!')
+        print('Here are the correct answers for the part(s) where you made mistakes:')
         print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     
@@ -107,7 +107,7 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
         # score
         print(f'You scored {questions_right}/{total_length} ({precentage}%).')
         if precentage != 100:
-            print('Correct answers for part(s) where you got wrong:')
+            print('Here are the correct answers for the part(s) where you made mistakes:')
             print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     return
@@ -131,19 +131,19 @@ def set_number(questions, answers):
     # what is the maximum questions allowed?
     max_questions = len(questions)
     # what does the user want?
-    user_number = input('Provide the number of questions for your quiz: ')
+    user_number = input('Please indicate the number of questions for your quiz: ')
     # error-proofing
     while True:
         try:
             int(user_number)
             break
         except:
-            user_number = input('Input invalid. Please enter a number: ')
+            user_number = input('The input is invalid. Please enter a valid number: ')
             
     user_number = int(user_number)
     # case if user provides too large of a value
     if user_number > max_questions:
-        print(f'Number exceeds maximum rows in provided wordbase (max = {max_questions}). Set number of questions to max.')
+        print(f'The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = {max_questions}).\nWe will now set the number of questions to the maximum limit.')
         user_number = max_questions
     # from user's input, cut down the list.
     questions = questions[:user_number]
