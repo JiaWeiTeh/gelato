@@ -14,7 +14,7 @@ def display(style = '1'):
     exec('cone%s()'%style)    
     print('\t\tWelcome to \033[32mGELATO\033[39m (GErman LAnguage Test Online)')
     print('\t\tThis is a (quirky) Python code written by Jia Wei.')
-    print(link('https://github.com/JiaWeiTeh/gelato'))
+    print('\t\t'+link('https://github.com/JiaWeiTeh/gelato'))
     print('\t\t[Version 1.2] July 2023. All rights reserved.\n\n')
     print('\t\t--------------------------------------------------')
     print('\t\tHere are the available learning modes for GELATO:\n')
