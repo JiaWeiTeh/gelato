@@ -121,7 +121,7 @@ def get_analysis(wrong_questions, wrong_answers, data_array):
     for ii, (artikel, noun) in enumerate(list(zip(wrong_answers, wrong_questions))):
         # add translation
         translation = data_array[np.where(data_array[:,1] == wrong_questions[ii])[0][0]][2]
-        message += "\033[33m{:<4}\033[35m{:<8}\033[39m{:>15}\033[39m\n".format(artikel, noun, "["+translation+"]")
+        message += "\033[33m{:<4}\033[35m{:<20}\033[39m{:<20}\033[39m\n".format(artikel, noun, "["+translation+"]")
     
     return message
 
