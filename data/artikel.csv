@@ -14,6 +14,7 @@ der,Kaffee,Coffee,Drinks
 das,Haar,Hair,Gesicht
 die,Stirn,Forehead,Gesicht
 die,Schläfe,Temple,Gesicht
+das,Auge,Eye ,Gesicht
 das,Ohr,Ear,Gesicht
 die,Wange,Cheek,Gesicht
 die,Nase,Nose,Gesicht
@@ -29,19 +30,13 @@ das,Muttermal,Birthmark,Gesicht
 das,Grübchen,Dimple,Gesicht
 die,Sommersprossen,Freckles,Gesicht
 der,Sternanis,Star anise,Gewürze
-das,Lorbeerblatt,Bay leaf,Gewürze
 der,Koriander,Coriander,Gewürze
 die,Zimtrinde,Cinnamon bark,Gewürze
-die,Kurkuma,Turmeric,Gewürze
 das,Currypulver,Curry powder,Gewürze
 der,Paprika,Paprika,Gewürze
-die,Muskatnuss,Nutmeg,Gewürze
-der,Kardamom,Cardamom,Gewürze
-die,Nelken,Cloves,Gewürze
 der,Ingwer,Ginger,Gewürze
 die,Chiliflocken,Chilli flakes,Gewürze
 die,Chilischote,Chilli pepper,Gewürze
-der,Fenchel,Fennel,Gewürze
 der,Pfeffer,Pepper,Würzmittel und Soßen
 das,Salz,Salt,Würzmittel und Soßen
 der,Essig,Vinegar,Würzmittel und Soßen
