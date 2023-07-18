@@ -14,6 +14,7 @@ def display(style = '1'):
     exec('cone%s()'%style)    
     print('\t\tWelcome to \033[32mGELATO\033[39m (GErman LAnguage Test Online)')
     print('\t\tThis is a (quirky) Python code written by Jia Wei.')
+    print(link('https://github.com/JiaWeiTeh/gelato'))
     print('\t\t[Version 1.2] July 2023. All rights reserved.\n\n')
     print('\t\t--------------------------------------------------')
     print('\t\tHere are the available learning modes for GELATO:\n')
@@ -53,7 +54,19 @@ def cone2():
                      \/
                                      
     """)
-    
+
+
+def link(url, label = None):
+    if label is None: 
+        label = url
+    parameters = ''
+
+    # OSC 8 ; params ; URI ST <name> OSC 8 ;; ST 
+    escape_mask = '\033]8;{};{}\033\\{}\033]8;;\033\\'
+
+    return escape_mask.format(parameters, url, label)
+
+
 def mode_selection():
     
     modes_dict = {'1': 'Artikel',
