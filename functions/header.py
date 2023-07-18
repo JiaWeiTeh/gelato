@@ -59,8 +59,7 @@ def link(url, label = None):
     if label is None: 
         label = url
     parameters = ''
-
-    # OSC 8 ; params ; URI ST <name> OSC 8 ;; ST 
+    # OSC 8 ; params ; URL ST <name> OSC 8 ;; ST 
     escape_mask = '\033]8;{};{}\033\\{}\033]8;;\033\\'
 
     return escape_mask.format(parameters, url, label)
