@@ -52,7 +52,7 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
             # ask questions
             wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, survival_hearts)
             # update score
-            survival_score += (index+1)
+            survival_score += index  - len(wrong_answers)
             # analysis
             current_analysis = get_analysis(wrong_questions, wrong_answers, data_array)
             analysis_message += current_analysis
