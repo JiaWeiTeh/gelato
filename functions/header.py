@@ -68,7 +68,7 @@ def link(url, label = None):
 def mode_selection():
     
     modes_dict = {'1': 'Artikel',
-                  '2': 'Artikel (Challenge)',
+                  '2': 'Artikel (Hardcore)',
                   '3': 'Settings',
                   '0': 'Exit'
                   }
