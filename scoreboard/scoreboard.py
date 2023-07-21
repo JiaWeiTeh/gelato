@@ -64,7 +64,7 @@ def check_top5(name, currentScore):
     
     return pairs
 
-
+record_score('test', 14)
 print(check_top5('top', 5))
 
 
