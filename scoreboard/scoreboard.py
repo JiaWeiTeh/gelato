@@ -76,7 +76,7 @@ def update_scoreboard(currentScore):
 
 def ask_name():
     
-    username = input("Enter your username for highscore: ")
+    username = input("You have achieved highscore! Please enter your username: ")
     
     return username
 
