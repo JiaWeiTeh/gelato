@@ -10,6 +10,7 @@ This script contains functions that are used to run artikel.py
 
 import numpy as np
 import pandas as pd
+from scoreboard import scoreboard
 
 def load_file():
         
@@ -62,6 +63,8 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
                 questions, answers = randomiser(questions, answers)
         # score
         print(f'You have successfully answered {survival_score} questions correctly!')
+        scoreboard.update_scoreboard(survival_score)
+        scoreboard.show_scoreboard()
         print('Here are the correct answers for the part(s) where you made mistakes:')
         print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
