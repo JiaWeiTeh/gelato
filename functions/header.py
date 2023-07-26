@@ -8,10 +8,13 @@ Created on Wed Jul 12 13:37:22 2023
 import time
 import sys
 from artikel import artikel
+import settings.settings as settings
 
-def display(style = '1'):
+def display(config, style = '1'):
     
-    exec('cone%s()'%style)    
+    exec('cone%s()'%style)   
+    if config.general.name != None:
+        print('\t\tHello %s!'%config.general.name[:10])
     print('\t\tWelcome to \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+'\033[39m (GErman LAnguage Test Online)')
     print('\t\tThis is a (quirky) Python code written by Jia Wei.')
     print('\t\t[Version 1.2] July 2023. All rights reserved.')
@@ -65,10 +68,10 @@ def link(url, label = None):
     return escape_mask.format(parameters, url, label)
 
 
-def mode_selection():
+def mode_selection(config):
     
     modes_dict = {'1': 'Artikel',
-                  '2': 'Artikel (Hardcore)',
+                  '2': 'Artikel (Challenge)',
                   '3': 'Settings',
                   '0': 'Exit'
                   }
@@ -77,8 +80,11 @@ def mode_selection():
     print('\t\tIf you wish to quit at any time, press CRTL+C')
     print('\t\t--------------------------------------------------')
 
-    # user select mode
-    input_mode = input('\nPlease enter the quiz mode (number): ').replace(" ", "")
+    if config.general.def_gamemode != None:
+        input_mode = config.general.def_gamemode
+    else:
+        # user select mode
+        input_mode = input('\nPlease enter the quiz mode (number): ').replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
@@ -92,13 +98,13 @@ def mode_selection():
         if input_mode == '1':
             print('\nEntering the \"'+true_mode+'\" mode....\n')
             time.sleep(.75)
-            artikel.run()
+            artikel.run(config, survival=False)
         elif input_mode == '2':
             print('\nEntering the \"'+true_mode+'\" mode....\n')
             time.sleep(.75)
-            artikel.run(survival=True)        
+            artikel.run(config, survival=True)        
         elif input_mode == '3':
-            print('Woops! Section TBD.')
+            settings.edit_param()
         elif input_mode == '0':
             sys.exit('Program ended.')
     else:
