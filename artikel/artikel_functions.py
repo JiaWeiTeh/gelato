@@ -42,7 +42,8 @@ def qna_section(config, survival):
     if survival:
         current_hearts = int(config.artikel_challenge.hearts)
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
-        print('Was ist der richtige Artikel für dieses Nomen?')
+        # print('Was ist der richtige Artikel für dieses Nomen?')
+        print('What are the correct articles for these nouns?')
         # survival score
         survival_score = 0
         analysis_message = ""

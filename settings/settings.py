@@ -33,6 +33,6 @@ def get_param():
 
 def edit_param():
     
-    os.system('vim settings/settings.yml')
+    os.system('emacs settings/settings.yml')
     
     return
