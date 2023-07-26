@@ -25,7 +25,7 @@ def load_file():
     return data_csv
 
 
-def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
+def qna_section(config, survival):
     
     # read csv
     data_full = np.genfromtxt('./data/artikel.csv', delimiter=',', encoding="utf8", dtype = None)
@@ -38,10 +38,9 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
     # set number of questions
     questions, answers = data_array[:,1], data_array[:,0]
     
-    # enter timed mode. Default is 1 minute and 3 lifes.
+    # enter survival mode. Default is 3 lifes.
     if survival:
-        # questions, answers = set_number(questions, answers)
-        current_hearts = survival_hearts
+        current_hearts = int(config.artikel_challenge.hearts)
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
         print('Was ist der richtige Artikel für dieses Nomen?')
         # survival score
@@ -51,7 +50,7 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
         while current_hearts > 0:
             wrong_questions, wrong_answers = [], []
             # ask questions
-            wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, survival_hearts)
+            wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
             # update score
             survival_score += index  - len(wrong_answers)
             # analysis
@@ -70,7 +69,7 @@ def qna_section(survival = False, survival_hearts = 3, timed_mins = 1):
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     
     elif not survival:
-        questions, answers = set_number(questions, answers)
+        questions, answers = set_number(questions, answers, config)
         # initialise list for wrong answers
         wrong_questions, wrong_answers = [], []
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
@@ -129,7 +128,8 @@ def get_analysis(wrong_questions, wrong_answers, data_array):
     return message
 
 
-def set_number(questions, answers):
+def set_number(questions, answers, config):
+    # TODO: add def number
     
     # what is the maximum questions allowed?
     max_questions = len(questions)
@@ -186,8 +186,6 @@ def ask_questions(questions, answers, wrong_questions, wrong_answers):
                 query = questions[ii+1] + ': '
             
     return wrong_questions, wrong_answers
-
-
 
 
 def ask_question_survival(questions, answers, wrong_questions, wrong_answers, hearts, max_hearts):

@@ -15,7 +15,7 @@ from functions import query
 
 import artikel.artikel_functions as artikel_functions
     
-def run(survival = False):
+def run(config, survival):
     # rerunning is by default False.
     isRerun = False
     # loop, because users have option to keep doing, or to exit.
@@ -36,10 +36,10 @@ def run(survival = False):
                 print('\nKlar! Here is a preview of your dictionary:\n')
                 print(tabulate(dataframeObject, headers = ["Artikel", "Noun", "Translation", "Tag"], tablefmt = 'fancy_grid'))
         if survival:
-            artikel_functions.qna_section(survival = True)
+            artikel_functions.qna_section(config, survival = True)
         else:
             # create QnA section
-            artikel_functions.qna_section()
+            artikel_functions.qna_section(config, survival = False)
         # rerun?
         rerun_message = 'Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?'
         isRerun = query.yes_no(rerun_message, 'no')

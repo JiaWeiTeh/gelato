@@ -13,10 +13,6 @@ import csv
 from tabulate import tabulate
 from datetime import date
 
-
-
-
-
 def show_scoreboard():
     
     # Reading and Converting the output csv file into a dataframe object
@@ -29,10 +25,10 @@ def show_scoreboard():
     # default = 'yes'
     # seeScore = query.yes_no(question_dictionary, 'no')
     # if yes, show.
+    print("Here are the top three high scores:")
     print(tabulate(score_csv, headers = ["Score", "User", "Date"], tablefmt = 'fancy_grid', showindex = False))
     
     return
-
 
 def update_scoreboard(currentScore):
     
@@ -76,12 +72,15 @@ def update_scoreboard(currentScore):
 
 def ask_name():
     
-    username = input("You have achieved highscore! Please enter your username: ")
+    # Ask for username, but make sure it has a length limit!
+    while True:
+        username = input("Congratulations on achieving a high score! Please enter your username: ")
+        if len(username) > 10:
+            print("Your username exceeds the maximum length of 10 characters. Please try again.")
+        else:
+            break
     
     return username
-
-
-
 
 
 
