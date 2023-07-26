@@ -9,17 +9,17 @@ import time
 import sys
 from artikel import artikel
 import settings.settings as settings
+from language.dictionary import prompt
 
 def display(config, style = '1'):
     
     exec('cone%s()'%style)   
     if config.general.name != None:
-        print('\t\tHello %s!'%config.general.name[:10])
-    print('\t\tWelcome to \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+'\033[39m (GErman LAnguage Test Online)')
-    print('\t\tThis is a (quirky) Python code written by Jia Wei.')
-    print('\t\t[Version 1.2] July 2023. All rights reserved.')
+        print('\t\t'+prompt['Hello']+' %s!'%config.general.name[:10])
+    print('\t\t'+prompt['Welcome to']+' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+'\033[39m (GErman LAnguage Test Online)')
+    print('\t\t'+prompt['[Version 1.2] July 2023. All rights reserved.'])
     print('\t\t--------------------------------------------------')
-    print('\t\tHere are the available learning modes for GELATO:\n')
+    print('\t\t'+prompt['Here are the available learning modes for GELATO:']+'\n')
 
     return
 
@@ -77,14 +77,15 @@ def mode_selection(config):
                   }
     for key, value in modes_dict.items():
         print('\t\t'+str(key)+':', value)
-    print('\t\tIf you wish to quit at any time, press CRTL+C')
+        
+    print('\t\t'+prompt['If you wish to quit at any time, press CRTL+C'])
     print('\t\t--------------------------------------------------')
 
     if config.general.def_gamemode != None:
         input_mode = config.general.def_gamemode
     else:
         # user select mode
-        input_mode = input('\nPlease enter the quiz mode (number): ').replace(" ", "")
+        input_mode = input('\n'+prompt['Please enter the quiz mode (number): ']).replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
