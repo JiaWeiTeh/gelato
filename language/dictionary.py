@@ -132,8 +132,14 @@ if selected_language == 'en':
         prompt[key] = key
 elif selected_language == 'katze':
     for key, val in prompt_raw.items():
-        meow_length = 'Meo'+'o'*randrange(5)+'w ' 
-        prompt[key] = meow_length*(randrange(2)+1) + ['?', '.', '!','.','??'][randrange(5)]
+        meow_length = ''
+        while True:
+            meow_length += 'Meo'+'o'*randrange(5)+'w' 
+            if randrange(2) == 1:
+                break
+            meow_length += ' '
+            
+        prompt[key] = meow_length + ['?', '.', '!','.','??'][randrange(5)]
 else:
     for key, val in prompt_raw.items():
         prompt[key] = val[selected_language]
