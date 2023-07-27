@@ -130,7 +130,7 @@ prompt = {}
 if selected_language == 'en':
     for key, val in prompt_raw.items():
         prompt[key] = key
-if selected_language == 'cat':
+if selected_language == 'katze':
     for key, val in prompt_raw.items():
         meow_length = 'Meo'+'o'*randrange(5)+'w ' 
         prompt[key] = meow_length*(randrange(2)+1) + ['?', '.', '!','.','??'][randrange(5)]
