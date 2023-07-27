@@ -70,10 +70,10 @@ def link(url, label = None):
 
 def mode_selection(config):
     
-    modes_dict = {'1': 'Artikel',
-                  '2': 'Artikel (Challenge)',
-                  '3': 'Settings',
-                  '0': 'Exit'
+    modes_dict = {'1': prompt['Article'],
+                  '2': prompt['Article (Challenge)'],
+                  '3': prompt['Settings'],
+                  '0': prompt['Exit']
                   }
     for key, value in modes_dict.items():
         print('\t\t'+str(key)+':', value)
@@ -81,11 +81,8 @@ def mode_selection(config):
     print('\t\t'+prompt['If you wish to quit at any time, press CRTL+C'])
     print('\t\t--------------------------------------------------')
 
-    if config.general.def_gamemode != None:
-        input_mode = config.general.def_gamemode
-    else:
-        # user select mode
-        input_mode = input('\n'+prompt['Please enter the quiz mode (number): ']).replace(" ", "")
+    # user select mode
+    input_mode = input('\n'+prompt['Please enter the quiz mode (number): ']).replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
@@ -97,17 +94,17 @@ def mode_selection(config):
     # mode cases
     if modeExist:
         if input_mode == '1':
-            print('\nEntering the \"'+true_mode+'\" mode....\n')
+            print(prompt['\nEntering %s mode....\n']%true_mode)
             time.sleep(.75)
             artikel.run(config, survival=False)
         elif input_mode == '2':
-            print('\nEntering the \"'+true_mode+'\" mode....\n')
+            print(prompt['\nEntering %s mode....\n']%true_mode)
             time.sleep(.75)
             artikel.run(config, survival=True)        
         elif input_mode == '3':
             settings.edit_param()
         elif input_mode == '0':
-            sys.exit('Program ended.')
+            sys.exit(prompt['The program will now terminate.'])
     else:
-        print(f'Quiz mode \"{input_mode}\" not recognised. The program will now terminate.')
+        print(prompt['Quiz mode not recognised. The program will now terminate.'])
     return

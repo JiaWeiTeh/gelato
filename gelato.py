@@ -9,6 +9,7 @@ This is the main file.
 """
 import functions.header as header
 import settings.settings as settings
+from language.dictionary import prompt
 
 # get parameters
 config = settings.get_param()
@@ -17,4 +18,4 @@ header.display(config)
 # available modes
 header.mode_selection(config)
 # end
-print('\nExiting GELATO...')
+print(prompt['\nExiting GELATO...'])

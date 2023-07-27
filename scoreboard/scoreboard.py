@@ -12,6 +12,8 @@ import pandas as pd
 import csv
 from tabulate import tabulate
 from datetime import date
+from language.dictionary import prompt
+
 
 def show_scoreboard():
     
@@ -25,8 +27,8 @@ def show_scoreboard():
     # default = 'yes'
     # seeScore = query.yes_no(question_dictionary, 'no')
     # if yes, show.
-    print("Here are the top three high scores:")
-    print(tabulate(score_csv, headers = ["Score", "User", "Date"], tablefmt = 'fancy_grid', showindex = False))
+    print(prompt["Here are the top three high scores:"])
+    print(tabulate(score_csv, headers = [prompt["Score"], prompt["User"], prompt["Date"]], tablefmt = 'fancy_grid', showindex = False))
     
     return
 
@@ -74,9 +76,9 @@ def ask_name():
     
     # Ask for username, but make sure it has a length limit!
     while True:
-        username = input("Congratulations on achieving a high score! Please enter your username: ")
+        username = input(prompt["Congratulations on achieving a high score! Please enter your username: "])
         if len(username) > 10:
-            print("Your username exceeds the maximum length of 10 characters. Please try again.")
+            print(prompt["Your username exceeds the maximum length of 10 characters. Please try again."])
         else:
             break
     
