@@ -43,11 +43,15 @@ prompt_raw = {
     }
 
 
-
+    
 prompt = {}
 
-for key, val in prompt_raw.items():
-    prompt[key] = val[selected_language]
+if selected_language == 'eng':
+    for key, val in prompt_raw.items():
+        prompt[key] = key
+else:
+    for key, val in prompt_raw.items():
+        prompt[key] = val[selected_language]
 
 
 # 无法识别测验模式“{input_mode}”。程序将终止。
