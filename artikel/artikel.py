@@ -10,8 +10,8 @@ This script contains the main tool for running the 'Artikel' mode.
 
 import pandas as pd
 from tabulate import tabulate
-import numpy as np
 from functions import query
+from language.dictionary import prompt
 
 import artikel.artikel_functions as artikel_functions
     
@@ -28,7 +28,7 @@ def run(config, survival):
             # Displaying the dataframe object
             pd.set_option('display.width', 500)
             # if users want to have a peek at the dictionary
-            question_dictionary = 'Would you like to review the database before the quiz starts?'
+            question_dictionary = prompt['Would you like to review the database before the quiz starts?']
             # defualt = 'yes'
             seeDict = query.yes_no(question_dictionary, 'no')
             # if yes, show.
@@ -41,7 +41,7 @@ def run(config, survival):
             # create QnA section
             artikel_functions.qna_section(config, survival = False)
         # rerun?
-        rerun_message = 'Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?'
+        rerun_message = prompt['Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?']
         isRerun = query.yes_no(rerun_message, 'no')
         # if not rerun, exit the program.
         if not isRerun:

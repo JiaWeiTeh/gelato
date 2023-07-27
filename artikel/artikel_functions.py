@@ -11,6 +11,8 @@ This script contains functions that are used to run artikel.py
 import numpy as np
 import pandas as pd
 from scoreboard import scoreboard
+from language.dictionary import prompt
+
 
 def load_file():
         
@@ -43,7 +45,7 @@ def qna_section(config, survival):
         current_hearts = int(config.artikel_challenge.hearts)
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
         # print('Was ist der richtige Artikel für dieses Nomen?')
-        print('What are the correct articles for these nouns?')
+        print(prompt['What are the correct articles for these nouns?'])
         # survival score
         survival_score = 0
         analysis_message = ""
@@ -62,10 +64,10 @@ def qna_section(config, survival):
                 # re-randomize
                 questions, answers = randomiser(questions, answers)
         # score
-        print(f'You have successfully answered {survival_score} questions correctly!')
+        print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
         scoreboard.update_scoreboard(survival_score)
         scoreboard.show_scoreboard()
-        print('Here are the correct answers for the part(s) where you made mistakes:')
+        print(prompt['Here are the correct answers for the part(s) where you made mistakes:'])
         print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     
@@ -74,7 +76,7 @@ def qna_section(config, survival):
         # initialise list for wrong answers
         wrong_questions, wrong_answers = [], []
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
-        print('Was ist der richtige Artikel für dieses Nomen?')
+        print(prompt['What are the correct articles for these nouns?'])
     
         incorrect_counter = True
         # loop through lists until all questions are answered correctly.
@@ -110,7 +112,7 @@ def qna_section(config, survival):
         # score
         print(f'You scored {questions_right}/{total_length} ({precentage}%).')
         if precentage != 100:
-            print('Here are the correct answers for the part(s) where you made mistakes:')
+            print(prompt['Here are the correct answers for the part(s) where you made mistakes:'])
             print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     return
@@ -179,7 +181,7 @@ def ask_questions(questions, answers, wrong_questions, wrong_answers):
             # record wrong pairs
             wrong_questions.append(questions[ii])
             wrong_answers.append(answers[ii])
-            print('\033[1A\033[2K' + q + ': ' + user_answer + ' {:<20}'.format('(Incorrect)'))
+            print('\033[1A\033[2K' + q + ': ' + user_answer + ' {:<20}'.format(prompt['(Incorrect)']))
             # special case if it is the last index, stop query
             if (ii+1) == len(questions):
                 return wrong_questions, wrong_answers
@@ -219,7 +221,7 @@ def ask_question_survival(questions, answers, wrong_questions, wrong_answers, he
                 # record wrong pairs
                 wrong_questions.append(questions[index])
                 wrong_answers.append(answers[index])
-                print('\033[1A\033[2K' + hearts_status + q + ': ' + user_answer + ' (Incorrect)')
+                print('\033[1A\033[2K' + hearts_status + q + ': ' + user_answer + ' ' + prompt['(Incorrect)'])
                 # special case if it is the last index, stop query.
                 if (index+1) == len(questions):
                     return wrong_questions, wrong_answers, current_hearts, index
