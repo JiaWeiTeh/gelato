@@ -17,6 +17,7 @@ prompt_raw = {
     
     'Hello':{ 
             'cn': '哈啰',
+            'fr': 'Bonjour',
             },
     
     'Welcome to':{
@@ -168,7 +169,10 @@ elif selected_language == 'katze':
         prompt[key] = meow_length + ['?', '.', '!','.','??'][randrange(5)]
 else:
     for key, val in prompt_raw.items():
-        prompt[key] = val[selected_language]
+        try:
+            prompt[key] = val[selected_language]
+        except: 
+            prompt[key] = key
 
 
 
