@@ -33,7 +33,7 @@ def run(config, survival):
             seeDict = query.yes_no(question_dictionary, 'no')
             # if yes, show.
             if seeDict:
-                print('\nKlar! Here is a preview of your dictionary:\n')
+                print(prompt['\nHere is a preview of your dictionary:\n'])
                 print(tabulate(dataframeObject, headers = ["Artikel", "Noun", "Translation", "Tag"], tablefmt = 'fancy_grid'))
         if survival:
             artikel_functions.qna_section(config, survival = True)

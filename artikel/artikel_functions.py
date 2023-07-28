@@ -75,7 +75,7 @@ def qna_section(config, survival):
         questions, answers = set_number(questions, answers, config)
         # initialise list for wrong answers
         wrong_questions, wrong_answers = [], []
-        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8)
+        print('       ' + '\u2500'*8 + prompt["# Begin quiz #"] + '\u2500'*8)
         print(prompt['What are the correct articles for these nouns?'])
     
         incorrect_counter = True
@@ -110,11 +110,11 @@ def qna_section(config, survival):
                 questions, answers = randomiser(np.array(questions), np.array(answers))
                 
         # score
-        print(f'You scored {questions_right}/{total_length} ({precentage}%).')
+        print(prompt['You scored %s (%s%%).']%(str(questions_right), str(precentage)))
         if precentage != 100:
             print(prompt['Here are the correct answers for the part(s) where you made mistakes:'])
             print(analysis_message)
-        print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+        print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
     return
 
 
@@ -137,19 +137,19 @@ def set_number(questions, answers, config):
     # what is the maximum questions allowed?
     max_questions = len(questions)
     # what does the user want?
-    user_number = input('Please indicate the number of questions for your quiz: ')
+    user_number = input(prompt['Please indicate the number of questions for your quiz: '])
     # error-proofing
     while True:
         try:
             int(user_number)
             break
         except:
-            user_number = input('The input is invalid. Please enter a valid number: ')
+            user_number = input(prompt['The input is invalid. Please enter a valid number: '])
             
     user_number = int(user_number)
     # case if user provides too large of a value
     if user_number > max_questions:
-        print(f'The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = {max_questions}).\nWe will now set the number of questions to the maximum limit.')
+        print(prompt['The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = %s).\nWe will now set the number of questions to the maximum limit.']%str(max_questions))
         user_number = max_questions
     # from user's input, cut down the list.
     questions = questions[:user_number]

@@ -88,7 +88,7 @@ prompt_raw = {
         },
     
     'Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?':{
-        'cn': '恭喜，您已成功完成整个练习！您想再来一次吗？',
+        'cn': '恭喜，您已成功完成整个练习！是否再来一次？',
         },
     
     '\nExiting GELATO...':{
@@ -118,7 +118,33 @@ prompt_raw = {
         'cn': '用户',
         },
     
+    "# End quiz #":{
+        'cn': '测试结束',
+        },
     
+    "# Begin quiz #":{
+        'cn': '测试开始',
+        },
+    
+    "You scored %s (%s%%).":{
+        'cn': '您答对了%s题 (%s%%).'
+        },
+    
+    'Please indicate the number of questions for your quiz: ':{
+        'cn': '请提供测试题数: ',
+        },
+    
+    'The input is invalid. Please enter a valid number: ':{
+        'cn': '输入无效。请重新输入测试题数: ',
+        },
+    
+    '\nHere is a preview of your dictionary:\n':{
+        'cn': "\n这是您的字典预览: \n",
+        },
+    
+    'The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = %s).\nWe will now set the number of questions to the maximum limit.':{
+        'cn': '问题数量超过了所提供的单词库允许的最大行数（最大值 = %s）。问题数量将设置为最大限制。',
+        },
     
     
     }
