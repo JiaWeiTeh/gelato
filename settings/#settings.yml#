@@ -1,12 +1,16 @@
 # General configuration of GELATO
+# Edit the values to create your personal GELATO. 
+
+# Once you have done editting, press CTRL+X then CTRL+C (emacs), then 'y' to save.
+
 general:
     # Greet user?
     # Name no longer than 10 characters (otherwise will be truncated).
     name: null 
-    # Default gamemode
-    # Available values: 1, 2, or null.
-    def_gamemode: null 
-    # Default language?
+    # Default language
+    # Available values?: en, cn (future: it/es/fr), katze
+    # Not implemented
+    def_language: en
     
 artikel_normal:
     # Default number of questions

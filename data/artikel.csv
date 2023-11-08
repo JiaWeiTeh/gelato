@@ -8,9 +8,9 @@ die ,Mutter,Mother,Familie
 der ,Vater,Father,Familie
 die ,Tante,Aunt,Familie
 der,Onkel,Uncle,Familie
-das,Ramen,Ramen,Foods
+das,Ramen,Ramen,Essen
 das,Gesicht,Face,Gesicht
-der,Kaffee,Coffee,Drinks
+der,Kaffee,Coffee,Getränk
 das,Haar,Hair,Gesicht
 die,Stirn,Forehead,Gesicht
 die,Schläfe,Temple,Gesicht
@@ -65,3 +65,18 @@ der,Brieföffner,Letter opener,Bürobedarf
 die,Reißzwecke,Thumbtack,Bürobedarf
 der,Papierkorb,Waste paper bin,Bürobedarf
 die,Pinnwand,Bulletin board,Bürobedarf
+der,Rahmen,Frame,Fahrrad
+die,Räder,Wheels,Fahrrad
+die,Felge,Rim,Fahrrad
+der,Lenker,Handlebar,Fahrrad
+die,Bremsen,Brakes,Fahrrad
+der,Schalthebel,Gear shift lever,Fahrrad
+der,Sattel,Saddle,Fahrrad
+der,Kettenantrieb,chain drive,Fahrrad
+die,Kette ,chain ,Fahrrad
+die,Schutzbleche,Mudguards,Fahrrad
+die,Zahnräder,Gears,Fahrrad
+die,Speichen,Spokes,Fahrrad
+die,Klingel,Bell,Fahrrad
+der,Ständer,Kickstand,Fahrrad
+die,Griffe,Handlebar grips,Fahrrad
