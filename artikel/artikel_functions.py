@@ -45,7 +45,7 @@ def qna_section(config, survival):
         current_hearts = int(config.artikel_challenge.hearts)
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
         # print('Was ist der richtige Artikel für dieses Nomen?')
-        print(prompt['What are the correct articles for these nouns?'])
+        print(prompt['What are the correct articles for these nouns? [der/die/das]'])
         # survival score
         survival_score = 0
         analysis_message = ""
@@ -67,7 +67,7 @@ def qna_section(config, survival):
         print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
         scoreboard.update_scoreboard(survival_score)
         scoreboard.show_scoreboard()
-        print(prompt['Here are the correct answers for the part(s) where you made mistakes:'])
+        print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
         print(analysis_message)
         print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     
@@ -76,7 +76,7 @@ def qna_section(config, survival):
         # initialise list for wrong answers
         wrong_questions, wrong_answers = [], []
         print('       ' + '\u2500'*8 + prompt["# Begin quiz #"] + '\u2500'*8)
-        print(prompt['What are the correct articles for these nouns?'])
+        print(prompt['What are the correct articles for these nouns? [der/die/das]'])
     
         incorrect_counter = True
         # loop through lists until all questions are answered correctly.
@@ -112,7 +112,7 @@ def qna_section(config, survival):
         # score
         print(prompt['You scored %s (%s%%).']%(str(questions_right), str(precentage)))
         if precentage != 100:
-            print(prompt['Here are the correct answers for the part(s) where you made mistakes:'])
+            print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
             print(analysis_message)
         print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
     return
