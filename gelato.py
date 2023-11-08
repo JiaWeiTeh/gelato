@@ -16,6 +16,8 @@ config = settings.get_param()
 # display header
 header.display(config)
 # available modes
-header.mode_selection(config)
-# end
-print(prompt['\nExiting GELATO...'])
+try:
+    header.mode_selection(config)
+except KeyboardInterrupt:
+    # end if ctrl+c command is used.
+    print(prompt['\nExiting GELATO...'])

@@ -147,7 +147,6 @@ prompt_raw = {
         'cn': '问题数量超过了所提供的单词库允许的最大行数（最大值 = %s）。问题数量将设置为最大限制。',
         },
     
-    
     }
 
 from random import randrange
