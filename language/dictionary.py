@@ -68,12 +68,12 @@ prompt_raw = {
         'cn': '程序将终止。',
         },    
     
-    'Here are the correct answers for the part(s) where you made mistakes:':{
+    'Here are the correct answers for the part(s) where you\'ve made mistake(s):':{
         'cn': '这里是您答错部分的正确答案：',
         },
 
-    'What are the correct articles for these nouns?':{
-        'cn': '这些名词的正确冠词是什么？',
+    'What are the correct articles for these nouns? [der/die/das]':{
+        'cn': '这些名词的正确冠词是什么？[der/die/das]',
         },
 
     'Would you like to review the database before the quiz starts?':{
