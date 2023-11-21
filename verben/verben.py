@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul 11 20:52:59 2023
+Created on Wed Nov  8 20:15:30 2023
 
 @author: Jia Wei Teh
 
-This script contains the main tool for running the 'Artikel' mode.
+This script contains the main tool for running the 'Verben' mode.
 """
 
 import pandas as pd
 from tabulate import tabulate
 from functions import query
 from language.dictionary import prompt
-import artikel.artikel_functions as artikel_functions
+import verben.verben_functions as verben_functions
     
 def run(config, survival):
     # rerunning is by default False.
@@ -20,7 +20,7 @@ def run(config, survival):
     # loop, because users have option to keep doing, or to exit.
     while True:
         # Import data
-        data_csv = artikel_functions.load_file()
+        data_csv = verben_functions.load_file()
         dataframeObject = pd.DataFrame(data_csv)
         # Only show dictionary in the first run.
         if not isRerun:
@@ -33,12 +33,12 @@ def run(config, survival):
             # if yes, show.
             if seeDict:
                 print(prompt['\nHere is a preview of your dictionary:\n'])
-                print(tabulate(dataframeObject, headers = ["Artikel", "Noun", "Translation", "Tag"], tablefmt = 'fancy_grid'))
+                print(tabulate(dataframeObject, headers = ["Infinitiv", "Präsens", "Präteritum", "Perfekt", "Beispielsatz"], tablefmt = 'fancy_grid'))
         if survival:
-            artikel_functions.qna_section(config, survival = True)
+            verben_functions.qna_section(config, survival = True)
         else:
             # create QnA section
-            artikel_functions.qna_section(config, survival = False)
+            verben_functions.qna_section(config, survival = False)
         # rerun?
         rerun_message = prompt['Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?']
         isRerun = query.yes_no(rerun_message, 'no')
@@ -49,14 +49,3 @@ def run(config, survival):
     return 
 
 
-
-# TODO:s
-
-
-# at the end show the time taken, show the accuracy.
-
-# show how well you have done.
-
-# if streak, then say you are in streak.
-
-# for nounds, can allow users to pick from three meanins.

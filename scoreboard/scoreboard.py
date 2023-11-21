@@ -15,10 +15,10 @@ from datetime import date
 from language.dictionary import prompt
 
 
-def show_scoreboard():
+def show_scoreboard(fname = 'artikel'):
     
     # Reading and Converting the output csv file into a dataframe object
-    score_csv = pd.read_csv("./data/scoreboard.csv", header = None)
+    score_csv = pd.read_csv(f"./data/{fname}_scoreboard.csv", header = None)
  
     # Displaying the dataframe object
     pd.set_option('display.width', 500)
@@ -32,20 +32,20 @@ def show_scoreboard():
     
     return
 
-def update_scoreboard(currentScore):
-    
+# TODO: THIS IS LAZY. PLEASE IMPLEMENT PARAMETER INSTEAD OF PUT DEFAULT VALUE.
+def update_scoreboard(currentScore, fname = 'artikel'):
     # time today
     today = date.today()
     # if file is not empty
     try:
         # name 
-        top_names = np.array(list(list(pd.read_csv("./data/scoreboard.csv", header = None).items())[1][1]))
+        top_names = np.array(list(list(pd.read_csv(f"./data/{fname}_scoreboard.csv", header = None).items())[1][1]))
         # top score
-        top_scores = list(pd.read_csv("./data/scoreboard.csv", header = None).items())[0][1]
+        top_scores = list(pd.read_csv(f"./data/{fname}_scoreboard.csv", header = None).items())[0][1]
         # pure score
         top_scores = list(map(lambda x: int(x.replace(" pts", "")), top_scores))
         # top time
-        top_times = list(pd.read_csv("./data/scoreboard.csv", header = None).items())[2][1]
+        top_times = list(pd.read_csv(f"./data/{fname}_scoreboard.csv", header = None).items())[2][1]
         
         if np.where(currentScore > np.array(top_scores))[0].size > 0 or len(top_scores) < 3:
             name = ask_name()
@@ -54,7 +54,7 @@ def update_scoreboard(currentScore):
             update.append(newpair)
             update = sorted(update)[::-1][:3]
             
-            with open("./data/scoreboard.csv", "w") as output:
+            with open(f"./data/{name}_scoreboard.csv", "w") as output:
                 writer = csv.writer(output)
                 for (score, name, time) in update:
                     writer.writerow([str(score)+" pts", name, time])
@@ -65,7 +65,7 @@ def update_scoreboard(currentScore):
     # if file is empty
     except:
         name = ask_name()
-        with open("./data/scoreboard.csv", "w") as output:
+        with open(f"./data/{fname}_scoreboard.csv", "w") as output:
             writer = csv.writer(output)
             writer.writerow([str(currentScore)+" pts", name, today.strftime("%d/%m/%Y")])
     
