@@ -12,7 +12,6 @@ import pandas as pd
 from tabulate import tabulate
 from functions import query
 from language.dictionary import prompt
-
 import artikel.artikel_functions as artikel_functions
     
 def run(config, survival):

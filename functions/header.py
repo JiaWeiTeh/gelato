@@ -8,6 +8,7 @@ Created on Wed Jul 12 13:37:22 2023
 import time
 import sys
 from artikel import artikel
+from verben import verben
 import settings.settings as settings
 from language.dictionary import prompt
 
@@ -72,7 +73,8 @@ def mode_selection(config):
     
     modes_dict = {'1': prompt['Article'],
                   '2': prompt['Article (Challenge)'],
-                  '3': prompt['Settings'],
+                  '3': 'Verben',
+                  '4': prompt['Settings'],
                   '0': prompt['Exit']
                   }
     for key, value in modes_dict.items():
@@ -102,6 +104,8 @@ def mode_selection(config):
             time.sleep(.75)
             artikel.run(config, survival=True)        
         elif input_mode == '3':
+            verben.run(config, survival=True)
+        elif input_mode == '4':
             settings.edit_param()
         elif input_mode == '0':
             sys.exit(prompt['The program will now terminate.'])
