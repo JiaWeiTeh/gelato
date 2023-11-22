@@ -73,7 +73,7 @@ def mode_selection(config):
     
     modes_dict = {'1': prompt['Article'],
                   '2': prompt['Article (Challenge)'],
-                  '3': 'Verben',
+                  '3': 'Verben (Practice)',
                   '4': prompt['Settings'],
                   '0': prompt['Exit']
                   }
@@ -84,7 +84,7 @@ def mode_selection(config):
     print('\t\t--------------------------------------------------')
 
     # user select mode
-    input_mode = input('\n'+prompt['Please enter the quiz mode (number): ']).replace(" ", "")
+    input_mode = input('\n'+prompt['Enter quiz mode (number): ']).replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
@@ -104,6 +104,7 @@ def mode_selection(config):
             time.sleep(.75)
             artikel.run(config, survival=True)        
         elif input_mode == '3':
+            print(prompt['\nEntering %s mode....\n']%true_mode)
             verben.run(config, survival=True)
         elif input_mode == '4':
             settings.edit_param()

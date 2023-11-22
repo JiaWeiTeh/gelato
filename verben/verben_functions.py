@@ -66,14 +66,17 @@ def qna_section(config, survival):
     # get keys and values
     
     # randomise for QnA, plus set the number of questions
-    data_array = set_number(randomiser(data_array))
+    data_array = set_number(randomiser(data_array), config)
     
+    # begin
     print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
     
     for row in data_array:
         
-        # the 0th index is the verb in question.
-        print(f'Your verb is: {cpr.BOLD}{row[0].upper()}{cpr.END}')
+        # the 0th index is the verb in question. Split between verb and meaning (separated by ':' in the data)
+        verb, meaning = row[0].split(':')
+        
+        print(f'Your verb is: {cpr.BOLD}{verb.upper()}{cpr.END} ({cpr.ITALIC}{cpr.GREEN}{meaning}{cpr.END})')
         # the remaining index are the other verb forms. We just loop through them.
         for ii in range(len(row)-1):
             # get question from header
@@ -87,7 +90,7 @@ def qna_section(config, survival):
                 print('\033[1A\033[2K' + question + user_answer + '\n  ' + answer + '\n')
             else:
                 print('\033[1A\033[2K' + question + user_answer + ' ' + answer)
-                
+    # end
     print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
 
 
@@ -100,16 +103,22 @@ def set_number(data_array, config):
     user_number = input(prompt['Please indicate the number of questions for your quiz: '])
     # error-proofing
     while True:
-        try:
-            int(user_number)
+        # if nothing, set as max
+        if user_number == "":
+            print('No input detected.')
+            user_number = max_questions
             break
-        except:
-            user_number = input(prompt['The input is invalid. Please enter a valid number: '])
+        else:
+            try:
+                int(user_number)
+                break
+            except:
+                user_number = input(prompt['The input is invalid. Please enter a valid number: '])
             
     user_number = int(user_number)
     # case if user provides too large of a value
-    if user_number > max_questions:
-        print(prompt['The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = %s).\nWe will now set the number of questions to the maximum limit.']%str(max_questions))
+    if user_number >= max_questions:
+        print('We will set the number of questions to the maximum limit. (maximum = %s)'%str(max_questions))
         user_number = max_questions
     # from user's input, cut down the list.
     return data_array[:user_number]

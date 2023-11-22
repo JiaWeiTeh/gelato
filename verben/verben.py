@@ -27,7 +27,7 @@ def run(config, survival):
             # Displaying the dataframe object
             pd.set_option('display.width', 500)
             # if users want to have a peek at the dictionary
-            question_dictionary = prompt['Would you like to review the database before the quiz starts?']
+            question_dictionary = prompt['Review database before quiz starts?']
             # defualt = 'yes'
             seeDict = query.yes_no(question_dictionary, 'no')
             # if yes, show.
