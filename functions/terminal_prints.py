@@ -15,7 +15,7 @@ class cprint:
     symbol = '\u27B3 '
     
     
-    BOLD = '\033[1m\033[96m'
+    BOLD = '\033[1m'
     
     BLACK  = '\33[30m'
     RED    = '\33[31m'

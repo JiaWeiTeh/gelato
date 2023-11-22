@@ -32,7 +32,7 @@ prompt_raw = {
         'cn': '以下是GELATO可用的学习模式：',
         },
     
-    'If you wish to quit at any time, press CRTL+C':{
+    'To quit, press CRTL+C':{
         'cn': '如果您想随时退出，请按CRTL+C键',
         },
     
