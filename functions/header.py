@@ -11,13 +11,15 @@ from artikel import artikel
 from verben import verben
 import settings.settings as settings
 from language.dictionary import prompt
+from functions.terminal_prints import cprint as cpr
+
 
 def display(config, style = '1'):
     
     exec('cone%s()'%style)   
     if config.general.name != None:
         print('\t\t'+prompt['Hello']+' %s!'%config.general.name[:10])
-    print('\t\t'+prompt['Welcome to']+' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+'\033[39m (GErman Learning Assist TOol)')
+    print('\t\t'+prompt['Welcome to']+ cpr.BOLD + ' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+ cpr.END + '\033[39m (GErman Learning Assist TOol)')
     print('\t\t'+prompt['[Version 1.2] July 2023. All rights reserved.'])
     print('\t\t--------------------------------------------------')
     print('\t\t'+prompt['Here are the available learning modes for GELATO:']+'\n')
@@ -80,7 +82,7 @@ def mode_selection(config):
     for key, value in modes_dict.items():
         print('\t\t'+str(key)+':', value)
         
-    print('\t\t'+prompt['If you wish to quit at any time, press CRTL+C'])
+    print('\n\t\t'+ cpr.RED + cpr.BOLD + prompt['To quit, press CRTL+C'] + cpr.END)
     print('\t\t--------------------------------------------------')
 
     # user select mode
