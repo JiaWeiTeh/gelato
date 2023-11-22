@@ -36,7 +36,7 @@ prompt_raw = {
         'cn': '如果您想随时退出，请按CRTL+C键',
         },
     
-    'Please enter the quiz mode (number): ':{
+    'Enter quiz mode (number): ':{
         'cn': '请输入测验模式（数字）： ',
         },
     
@@ -76,7 +76,7 @@ prompt_raw = {
         'cn': '这些名词的正确冠词是什么？[der/die/das]',
         },
 
-    'Would you like to review the database before the quiz starts?':{
+    'Review database before quiz starts?':{
         'cn': '在测验开始之前，您想要复习数据库吗？',
         },
     

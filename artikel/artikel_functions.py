@@ -140,22 +140,29 @@ def set_number(questions, answers, config):
     user_number = input(prompt['Please indicate the number of questions for your quiz: '])
     # error-proofing
     while True:
-        try:
-            int(user_number)
+        # if nothing, set as max
+        if user_number == "":
+            print('No input detected.')
+            user_number = max_questions
             break
-        except:
-            user_number = input(prompt['The input is invalid. Please enter a valid number: '])
+        else:
+            try:
+                int(user_number)
+                break
+            except:
+                user_number = input(prompt['The input is invalid. Please enter a valid number: '])
             
     user_number = int(user_number)
     # case if user provides too large of a value
-    if user_number > max_questions:
-        print(prompt['The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = %s).\nWe will now set the number of questions to the maximum limit.']%str(max_questions))
+    if user_number >= max_questions:
+        print('We will set the number of questions to the maximum limit. (maximum = %s)'%str(max_questions))
         user_number = max_questions
     # from user's input, cut down the list.
     questions = questions[:user_number]
     answers = answers[:user_number]
     
     return questions, answers
+
 
 
 def ask_questions(questions, answers, wrong_questions, wrong_answers):
