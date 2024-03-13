@@ -1,7 +1,5 @@
-.. gelato documentation master file, created by
-   sphinx-quickstart on Wed Nov  8 14:16:08 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. role:: small-caps
+   :class: small-caps
 
 Welcome to gelato's documentation!
 ==================================
