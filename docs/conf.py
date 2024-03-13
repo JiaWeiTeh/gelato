@@ -14,6 +14,10 @@ release = '1.2'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
+import sys, os
+
+sys.path.append(os.path.abspath('sphinxext'))
+
 extensions = ['sphinxemoji.sphinxemoji']
 sphinxemoji_style = 'twemoji'
 
