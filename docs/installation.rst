@@ -1,1 +1,1 @@
-.. highlight:: rest.. _sec-running:Running GELATO==============(Installation TBD)An example of running GELATO may look like this:.. code-block:: console    python gelato.py    Note: The above command is ran in the GELATO root directory.
+.. highlight:: rest.. _sec-running:Running GELATO==============To install----------(Installation TBD)To run------An example of running GELATO may look like this:.. code-block:: console    python gelato.py    Note: The above command is ran in the GELATO root directory.
