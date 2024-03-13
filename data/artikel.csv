@@ -42,8 +42,6 @@ das,Salz,Salt,Würzmittel und Soßen
 der,Essig,Vinegar,Würzmittel und Soßen
 das,Olivenöl,Olive oil,Würzmittel und Soßen
 die,Salsa (Soßen),Salsa,Würzmittel und Soßen
-das,Ketchup,Ketchup,Würzmittel und Soßen
-der,Ketchup,Ketchup,Würzmittel und Soßen
 der,Senf,Mustard,Würzmittel und Soßen
 die,Mayonnaise,Mayonnaise,Würzmittel und Soßen
 die,Sojasoße,Soy sauce,Würzmittel und Soßen
@@ -70,7 +68,6 @@ der,Rahmen,Frame,Fahrrad
 die,Räder,Wheels,Fahrrad
 die,Felge,Rim,Fahrrad
 der,Lenker,Handlebar,Fahrrad
-die,Bremsen,Brakes,Fahrrad
 der,Schalthebel,Gear shift lever,Fahrrad
 der,Sattel,Saddle,Fahrrad
 der,Kettenantrieb,chain drive,Fahrrad

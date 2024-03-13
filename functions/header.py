@@ -14,7 +14,7 @@ from language.dictionary import prompt
 from functions.terminal_prints import cprint as cpr
 
 
-def display(config, style = '1'):
+def display(config, style = '3'):
     
     exec('cone%s()'%style)   
     if config.general.name != None:
@@ -59,6 +59,28 @@ def cone2():
                      \/
                                      
     """)
+    
+    return
+
+
+
+def cone3():
+    
+    print(r"""
+                   _  
+                 ,' `,.      __    ____  _      __   _____  ___  
+                 >-.(__)    / /`_ | |_  | |    / /\   | |  / / \ 
+                (_,-' |     \_\_/ |_|__ |_|__ /_/--\  |_|  \_\_/
+                  `.  |        
+                    `.|        
+                      `
+        """)
+
+    return 
+
+    
+    
+    
 
 
 def link(url, label = None):
