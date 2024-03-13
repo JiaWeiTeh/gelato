@@ -5,8 +5,6 @@
 
 Welcome to gelato's documentation!
 ==================================
-
-
 Ever wished learning German noun articles could be as delightful as indulging in a scoop of your favorite gelato? Well, meet
 GELATO - the \ **GE**\rman \ **L**\earning \ **A**\ssist \ **T**\ool. 
 
