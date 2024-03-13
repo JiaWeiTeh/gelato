@@ -15,17 +15,12 @@ it's like having a personal language coach that caters to your every whim.
 
    This documentation (and code) is currently undergoing active development. Stay tuned for updates!
 
-
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   license
+   installation
+   acknowledgements
