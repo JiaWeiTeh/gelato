@@ -50,6 +50,7 @@ def qna_section(config, survival):
         survival_score = 0
         analysis_message = ""
         # loop as long as we are still surviving
+        # i.e., if one has successfully completed all the questions, it loops back to the beginning.
         while current_hearts > 0:
             wrong_questions, wrong_answers = [], []
             # ask questions
