@@ -246,7 +246,7 @@ def print_hearts(max_hearts, current_hearts):
     filled_heart = "\u2665 "
     empty_heart = "\u2661 "
     # how many filled hearts?
-    hearts = empty_heart * (max_hearts - current_hearts) + filled_heart * current_hearts + '\t'
+    hearts = empty_heart * (max_hearts - current_hearts) + filled_heart * current_hearts + '   '
     
     return hearts
 

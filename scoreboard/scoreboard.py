@@ -32,7 +32,7 @@ def show_scoreboard(fname = 'artikel'):
     
     return
 
-# TODO: THIS IS LAZY. PLEASE IMPLEMENT PARAMETER INSTEAD OF PUT DEFAULT VALUE.
+# TODO: THIS IS LAZY. PLEASE IMPLEMENT PARAMETER INSTEAD OF PUTTING A DEFAULT VALUE.
 def update_scoreboard(currentScore, fname = 'artikel'):
     # time today
     today = date.today()
@@ -54,7 +54,7 @@ def update_scoreboard(currentScore, fname = 'artikel'):
             update.append(newpair)
             update = sorted(update)[::-1][:3]
             
-            with open(f"./data/{name}_scoreboard.csv", "w") as output:
+            with open(f"./data/{fname}_scoreboard.csv", "w") as output:
                 writer = csv.writer(output)
                 for (score, name, time) in update:
                     writer.writerow([str(score)+" pts", name, time])
