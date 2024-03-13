@@ -21,3 +21,4 @@ Contents
    license
    installation
    acknowledgements
+   customisation
