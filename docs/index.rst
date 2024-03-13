@@ -16,8 +16,11 @@ GELATO has a *sweet* spot for those tricky German noun articles. Forget boring t
 But here's the cherry on top – GELATO isn't handcuffed to German topics alone. Feeling adventurous? Customize your learning experience! 
 GELATO lets you throw in non-German topics, making it as flexible as your ever-changing cravings. It's like having a personal language coach that caters to your every whim.
 
-So, why settle for boring when you can have GELATO by your side? Dive into German learning with a side of fun and discover a whole new world of linguistic awesomeness! |:ice_cream:| |:sparkles:|
+So, why settle for boring when you can have GELATO by your side? Dive into German learning with a side of fun and discover a whole new world of linguistic awesomeness! U+1F366 
 
+\u1F366
+
+\U+1F366
 
 .. note::
 
