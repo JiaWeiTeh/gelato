@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 from scoreboard import scoreboard
 from language.dictionary import prompt
+from functions import footer
 
 
 def load_file():
@@ -49,28 +50,33 @@ def qna_section(config, survival):
         # survival score
         survival_score = 0
         analysis_message = ""
-        # loop as long as we are still surviving
-        # i.e., if one has successfully completed all the questions, it loops back to the beginning.
-        while current_hearts > 0:
-            wrong_questions, wrong_answers = [], []
-            # ask questions
-            wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
-            # update score
-            survival_score += index  - len(wrong_answers)
-            # analysis
-            current_analysis = get_analysis(wrong_questions, wrong_answers, data_array)
-            analysis_message += current_analysis
-            # if all right, continue loop
-            if current_hearts > 0:
-                # re-randomize
-                questions, answers = randomiser(questions, answers)
-        # score
-        print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
-        scoreboard.update_scoreboard(survival_score)
-        scoreboard.show_scoreboard()
-        print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
-        print(analysis_message)
-        print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+        # start
+        
+        # initialise array for wrong answers
+        wrong_questions, wrong_answers = [], []
+        # ask questions
+        wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
+        # update score. You have either completed the entire challenge or have used up all your hearts.
+        survival_score += index  - len(wrong_answers)
+        # analysis
+        current_analysis = get_analysis(wrong_questions, wrong_answers, data_array)
+        analysis_message += current_analysis
+        # if finished challenge with hearts remaining, win the game.
+        if current_hearts > 0:
+            footer.win()
+            print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
+            print('Congratulations.')
+            scoreboard.update_scoreboard(survival_score)
+            scoreboard.show_scoreboard()
+            print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+        elif current_hearts == 0:
+            # score
+            print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
+            scoreboard.update_scoreboard(survival_score)
+            scoreboard.show_scoreboard()
+            print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
+            print(analysis_message)
+            print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
     
     elif not survival:
         questions, answers = set_number(questions, answers, config)
@@ -98,7 +104,7 @@ def qna_section(config, survival):
                     # calculate the score
                     questions_right = int(len(questions) - len(wrong_questions))
                     total_length = len(questions)
-                    precentage = int(questions_right/len(questions)*100)
+                    precentage = int(questions_right/total_length*100)
                     # provide extra analysis
                     analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
                     # shutdown 
@@ -115,6 +121,8 @@ def qna_section(config, survival):
         if precentage != 100:
             print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
             print(analysis_message)
+        else:
+            footer.win()
         print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
     return
 
