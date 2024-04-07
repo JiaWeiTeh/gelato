@@ -34,6 +34,7 @@ def run(config, survival):
             if seeDict:
                 print(prompt['\nHere is a preview of your dictionary:\n'])
                 print(tabulate(dataframeObject, headers = ["Artikel", "Noun", "Translation", "Tag"], tablefmt = 'fancy_grid'))
+        # written in if-else just for clarity.
         if survival:
             artikel_functions.qna_section(config, survival = True)
         else:
@@ -50,10 +51,14 @@ def run(config, survival):
 
 
 
-# TODO:s
+# TODO:
 
 
 # at the end show the time taken, show the accuracy.
+
+# (user request)
+# Add function to allow user to chose 'fast option', where 1, 2, 3 represents der die das. No enter is needed
+# as one can just make an infinitely long while True loop.
 
 # show how well you have done.
 

@@ -36,7 +36,7 @@ def show_scoreboard(fname = 'artikel'):
 def update_scoreboard(currentScore, fname = 'artikel'):
     # time today
     today = date.today()
-    # if file is not empty
+    # if file is not empty, then this try block will fail. 
     try:
         # name 
         top_names = np.array(list(list(pd.read_csv(f"./data/{fname}_scoreboard.csv", header = None).items())[1][1]))

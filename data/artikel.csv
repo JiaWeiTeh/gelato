@@ -3,3 +3,127 @@ das,Kind,Child,Familie
 die,Kinder,Children,Familie
 die,Cousine,Cousin,Familie
 der ,Bruder,Brother,Familie
+die ,Schwester,Sister,Familie
+die ,Mutter,Mother,Familie
+der ,Vater,Father,Familie
+die ,Tante,Aunt,Familie
+der,Onkel,Uncle,Familie
+das,Ramen,Ramen,Essen
+das,Gesicht,Face,Gesicht
+der,Kaffee,Coffee,Getränk
+das,Haar,Hair,Gesicht
+die,Stirn,Forehead,Gesicht
+die,Schläfe,Temple,Gesicht
+das,Auge,Eye ,Gesicht
+das,Ohr,Ear,Gesicht
+die,Wange,Cheek,Gesicht
+die,Nase,Nose,Gesicht
+das,Nasenloch,Nostril,Gesicht
+der ,Zahn,Teeth,Gesicht
+die,Wimper,Eyelash,Gesicht
+die,Lippe,Lips,Gesicht
+der,Mund,Mouth,Gesicht
+das,Kinn,Chin,Gesicht
+der ,Unterkiefer,Lower Jaw,Gesicht
+die,Haut,Skin,Gesicht
+das,Muttermal,Birthmark,Gesicht
+das,Grübchen,Dimple,Gesicht
+die,Sommersprossen,Freckles,Gesicht
+der,Sternanis,Star anise,Gewürze
+der,Koriander,Coriander,Gewürze
+die,Zimtrinde,Cinnamon bark,Gewürze
+das,Currypulver,Curry powder,Gewürze
+der,Paprika,Paprika,Gewürze
+der,Ingwer,Ginger,Gewürze
+die,Chiliflocken,Chilli flakes,Gewürze
+die,Chilischote,Chilli pepper,Gewürze
+der,Pfeffer,Pepper,Würzmittel und Soßen
+das,Salz,Salt,Würzmittel und Soßen
+der,Essig,Vinegar,Würzmittel und Soßen
+das,Olivenöl,Olive oil,Würzmittel und Soßen
+die,Salsa (Soßen),Salsa,Würzmittel und Soßen
+der,Senf,Mustard,Würzmittel und Soßen
+die,Mayonnaise,Mayonnaise,Würzmittel und Soßen
+die,Sojasoße,Soy sauce,Würzmittel und Soßen
+die,Schere,Scissors,Bürobedarf
+der,Textmarker,Highlighter,Bürobedarf
+der,Stiftehalter,Pen holder,Bürobedarf
+das,Notizbuch,Notebook,Bürobedarf
+der,Bleistift,Pencil,Bürobedarf
+die,Büroklammer,Paperclip,Bürobedarf
+der,Kugelschreiber,Ballpoint pen,Bürobedarf
+der,Radiergummi,Eraser,Bürobedarf
+der,Haftstreifen,Binder,Bürobedarf
+der,Bleistiftspitzer,Pencil sharpener,Bürobedarf
+der,Tesafilm,Cellophane/scotch tape,Bürobedarf
+der,Tacker,Staple,Bürobedarf
+der,Locher,Perforator/puncher,Bürobedarf
+das,Tipp-Ex,Correction tape,Bürobedarf
+der,Ordner,Folder,Bürobedarf
+der,Brieföffner,Letter opener,Bürobedarf
+die,Reißzwecke,Thumbtack,Bürobedarf
+der,Papierkorb,Waste paper bin,Bürobedarf
+die,Pinnwand,Bulletin board,Bürobedarf
+der,Rahmen,Frame,Fahrrad
+die,Räder,Wheels,Fahrrad
+die,Felge,Rim,Fahrrad
+der,Lenker,Handlebar,Fahrrad
+der,Schalthebel,Gear shift lever,Fahrrad
+der,Sattel,Saddle,Fahrrad
+der,Kettenantrieb,chain drive,Fahrrad
+die,Kette ,chain ,Fahrrad
+die,Schutzbleche,Mudguards,Fahrrad
+die,Zahnräder,Gears,Fahrrad
+die,Speichen,Spokes,Fahrrad
+die,Klingel,Bell,Fahrrad
+der,Ständer,Kickstand,Fahrrad
+die,Griffe,Handlebar grips,Fahrrad
+die ,Erdbeere,Strawberry,Obst
+der,Apfel,Apple,Obst
+die,Aprikose,Apricot,Obst
+der,Pfirsich,Peach,Obst
+die,Nektarine,Nectarine,Obst
+die,Pflaume,Plum,Obst
+die,Birne,Pear,Obst
+die,Grapefruit,Grapefruit,Obst
+die,Orange,orange,Obst
+die,Zitrone,Lemon,Obst
+die,Limette,Lime,Obst
+die,Banane,Banana,Obst
+die,Wassermelone,Watermelon,Obst
+die,Schale,Peel,Obst
+der,Schnitz,slice,Obst
+das,Weizenmehl,Wheat flour,Brot
+das,Croissant,Croissant,Brot
+das,Weissbrot,White bread,Brot
+das,Sandwich,sandwich,Brot
+die,Tortilla,Tortilla,Brot
+der,Bagel,bagel,Brot
+die,Scheibe,Slice of bread,Brot
+der,Kopf,Head,Körper
+der,Brustkorb,Brisket,Körper
+der,Arm,Arm,Körper
+der,Bauch,Belly,Körper
+die,Hüfte,Hip,Körper
+die,Leiste,Groin,Körper
+der,Oberschenkel,Thigh,Körper
+das,Knie,Knee,Körper
+das,Schienbein,Shin,Körper
+der,Hals,Neck,Körper
+die,Schulter,Shoulder,Körper
+die,Brust,Chest,Körper
+die,Schamgegend,Pubic area,Körper
+das,Bein,Leg,Körper
+der,Fuß,Foot,Körper
+der,Nacken,Neck,Körper
+das,Schulterblatt,Shoulder blade,Körper
+die,Taille,Waist,Körper
+das,Gesäß,Buttocks,Körper
+die,Kniekehle,Back of the knee,Körper
+die,Ferse,Heel,Körper
+der,Ellbogen,Elbow,Körper
+der,Rücken,back,Körper
+das,Handgelenk,Wrist,Körper
+die,Hand,Hand,Körper
+die ,Wade,Calf,Körper
+der,Knöchel,Ankle,Körper

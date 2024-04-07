@@ -15,7 +15,7 @@ def yes_no(question, default = "yes"):
                     "y": True,
                     "ja": True,
                     "hao": True,
-                    "maybe": True, # No room for hesitation
+                    "maybe": True, # No room for hesitation here
                     "no": False,
                     "n": False,
                     "nein": False,
