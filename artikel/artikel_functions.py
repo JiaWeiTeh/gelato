@@ -41,7 +41,7 @@ def qna_section(config, survival):
     # set number of questions
     questions, answers = data_array[:,1], data_array[:,0]
     
-    # enter survival mode. Default is 3 lifes.
+    # enter survival mode. Default is 3 lives.
     if survival:
         current_hearts = int(config.artikel_challenge.hearts)
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
@@ -57,7 +57,7 @@ def qna_section(config, survival):
         # ask questions
         wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
         # update score. You have either completed the entire challenge or have used up all your hearts.
-        survival_score += index  - len(wrong_answers)
+        survival_score += index - len(wrong_answers)
         # analysis
         current_analysis = get_analysis(wrong_questions, wrong_answers, data_array)
         analysis_message += current_analysis
@@ -110,7 +110,7 @@ def qna_section(config, survival):
                     # shutdown 
                     incorrect_counter = False
                     
-                # update list into new ones
+                # update list into new ones 
                 questions, answers = wrong_questions, wrong_answers
                 wrong_questions, wrong_answers = [], []
                 # randomise again
@@ -141,13 +141,13 @@ def get_analysis(wrong_questions, wrong_answers, data_array):
 
 
 def set_number(questions, answers, config):
-    # TODO: add def number
+    # TODO: add default number
     
     # what is the maximum questions allowed?
     max_questions = len(questions)
     # what does the user want?
     user_number = input(prompt['Please indicate the number of questions for your quiz: '])
-    # error-proofing
+    # error/spam-proofing
     while True:
         # if nothing, set as max
         if user_number == "":
