@@ -7,6 +7,8 @@ __pycache__/
 # My files
 data/scoreboard.csv
 */*.icloud
+.DS_Store
+.spyproject/
 
 # C extensions
 *.so
