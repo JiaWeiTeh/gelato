@@ -161,7 +161,7 @@ def set_number(questions, answers, config):
             try:
                 int(user_number)
                 break
-            except:
+            except ValueError:
                 user_number = input(prompt['The input is invalid. Please enter a valid number: '])
             
     user_number = int(user_number)

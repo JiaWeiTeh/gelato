@@ -9,12 +9,13 @@ This script retrieves the parameters.
 
 
 import os
+import subprocess
 import yaml
 
 def get_param():
     # load
     with open('./settings/settings.yml','r') as file:
-        gelato_params = yaml.load(file, Loader=yaml.Loader)
+        gelato_params = yaml.load(file, Loader=yaml.SafeLoader)
     
     # A simple script that turns dictionaries into objects
     class Dict2Class:
@@ -32,7 +33,5 @@ def get_param():
     return Dict2Class(gelato_params)
 
 def edit_param():
-    
-    os.system('emacs settings/settings.yml')
-    
-    return
+    editor = os.environ.get('EDITOR', 'nano')
+    subprocess.run([editor, 'settings/settings.yml'])
