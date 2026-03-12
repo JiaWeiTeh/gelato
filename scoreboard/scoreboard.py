@@ -53,14 +53,11 @@ def update_scoreboard(currentScore, fname = 'artikel'):
             update = list(zip(top_scores, top_names, top_times))
             update.append(newpair)
             update = sorted(update)[::-1][:3]
-            
+
             with open(f"./data/{fname}_scoreboard.csv", "w") as output:
                 writer = csv.writer(output)
                 for (score, name, time) in update:
                     writer.writerow([str(score)+" pts", name, time])
-                    
-        elif len(top_scores) < 3:
-            return
         
     # if file is empty
     except:

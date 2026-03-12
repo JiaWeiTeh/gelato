@@ -55,9 +55,9 @@ def qna_section(config, survival):
         # initialise array for wrong answers
         wrong_questions, wrong_answers = [], []
         # ask questions
-        wrong_questions, wrong_answers, current_hearts, index = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
+        wrong_questions, wrong_answers, current_hearts, questions_answered = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
         # update score. You have either completed the entire challenge or have used up all your hearts.
-        survival_score += index - len(wrong_answers)
+        survival_score = questions_answered - len(wrong_answers)
         # analysis
         current_analysis = get_analysis(wrong_questions, wrong_answers, data_array)
         analysis_message += current_analysis
@@ -86,6 +86,9 @@ def qna_section(config, survival):
         print(prompt['What are the correct articles for these nouns? [der/die/das]'])
     
         incorrect_counter = True
+        questions_right = len(questions)
+        percentage = 100
+        analysis_message = ""
         # loop through lists until all questions are answered correctly.
         while True:
             wrong_questions, wrong_answers = ask_questions(questions, answers, wrong_questions, wrong_answers)
@@ -96,7 +99,7 @@ def qna_section(config, survival):
                     # calculate the score
                     questions_right = int(len(questions) - len(wrong_questions))
                     total_length = len(questions)
-                    precentage = int(questions_right/len(questions)*100)
+                    percentage = int(questions_right/len(questions)*100)
                 break
             else:
                 # If something is wrong, run this part only once
@@ -104,7 +107,7 @@ def qna_section(config, survival):
                     # calculate the score
                     questions_right = int(len(questions) - len(wrong_questions))
                     total_length = len(questions)
-                    precentage = int(questions_right/total_length*100)
+                    percentage = int(questions_right/total_length*100)
                     # provide extra analysis
                     analysis_message = get_analysis(wrong_questions, wrong_answers, data_array)
                     # shutdown 
@@ -117,8 +120,8 @@ def qna_section(config, survival):
                 questions, answers = randomiser(np.array(questions), np.array(answers))
                 
         # score
-        print(prompt['You scored %s (%s%%).']%(str(questions_right), str(precentage)))
-        if precentage != 100:
+        print(prompt['You scored %s (%s%%).']%(str(questions_right), str(percentage)))
+        if percentage != 100:
             print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
             print(analysis_message)
         else:
@@ -215,11 +218,13 @@ def ask_question_survival(questions, answers, wrong_questions, wrong_answers, he
     # basic form of query 
     query = print_hearts(max_hearts, current_hearts) + questions[0] + ': '
     
+    questions_answered = 0
     for index, q in enumerate(questions):
         # don't ask questions once no more hearts left.
-        if current_hearts <= 0:        
+        if current_hearts <= 0:
             break
         else:
+            questions_answered += 1
             hearts_status = print_hearts(max_hearts, current_hearts)
             user_answer = input(query).replace(" ","")
             # if the answer is correct, overwrite the NEXT question on the same line
@@ -227,7 +232,7 @@ def ask_question_survival(questions, answers, wrong_questions, wrong_answers, he
                 # special case if it is the last index, stop query.
                 if (index+1) == len(questions):
                     print('\033[1A\033[2K\033[1A')
-                    return wrong_questions, wrong_answers, current_hearts, index
+                    return wrong_questions, wrong_answers, current_hearts, questions_answered
                 # if there is no overflow, overwrite with new query.
                 else:
                     query = '\033[1A\033[2K' + hearts_status  + questions[index+1] + ': '
@@ -240,13 +245,13 @@ def ask_question_survival(questions, answers, wrong_questions, wrong_answers, he
                 print('\033[1A\033[2K' + hearts_status + q + ': ' + user_answer + ' ' + prompt['(Incorrect)'])
                 # special case if it is the last index, stop query.
                 if (index+1) == len(questions):
-                    return wrong_questions, wrong_answers, current_hearts, index
+                    return wrong_questions, wrong_answers, current_hearts, questions_answered
                 # otherwise, next query.
                 else:
                     hearts_status = print_hearts(max_hearts, current_hearts)
                     query = hearts_status  + questions[index+1] + ': '
-            
-    return wrong_questions, wrong_answers, current_hearts, index
+
+    return wrong_questions, wrong_answers, current_hearts, questions_answered
 
 
 
