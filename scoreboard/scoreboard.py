@@ -59,8 +59,8 @@ def update_scoreboard(currentScore, fname = 'artikel'):
                 for (score, name, time) in update:
                     writer.writerow([str(score)+" pts", name, time])
         
-    # if file is empty
-    except:
+    # if file is empty or malformed
+    except (FileNotFoundError, KeyError, IndexError, pd.errors.EmptyDataError):
         name = ask_name()
         with open(f"./data/{fname}_scoreboard.csv", "w") as output:
             writer = csv.writer(output)

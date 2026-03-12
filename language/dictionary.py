@@ -170,7 +170,7 @@ else:
     for key, val in prompt_raw.items():
         try:
             prompt[key] = val[selected_language]
-        except: 
+        except KeyError:
             prompt[key] = key
 
 

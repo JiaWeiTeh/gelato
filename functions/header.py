@@ -15,8 +15,9 @@ from functions.terminal_prints import cprint as cpr
 
 
 def display(config, style = '3'):
-    
-    exec('cone%s()'%style)   
+
+    cones = {'1': cone1, '2': cone2, '3': cone3}
+    cones[style]()
     if config.general.name != None:
         print('\t\t'+prompt['Hello']+' %s!'%config.general.name[:10])
     print('\t\t'+prompt['Welcome to']+ cpr.BOLD + ' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+ cpr.END + '\033[39m (GErman Learning Assist TOol)')
