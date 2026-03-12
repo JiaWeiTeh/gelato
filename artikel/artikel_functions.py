@@ -113,7 +113,6 @@ def qna_section(config, survival):
         else:
             footer.win()
         print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
-    return
 
 
 
