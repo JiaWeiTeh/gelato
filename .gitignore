@@ -6,9 +6,17 @@ __pycache__/
 
 # My files
 data/scoreboard.csv
+data/*_scoreboard.csv
 */*.icloud
 .DS_Store
 .spyproject/
+
+# Excel temp/lock files
+~$*
+
+# Generated CSV files (rebuilt from Excel at runtime)
+data/artikel.csv
+data/verben.csv
 
 # C extensions
 *.so
