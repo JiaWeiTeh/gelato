@@ -60,6 +60,9 @@ def qna_section(config, survival):
     # begin
     print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
 
+    total_fields = 0
+    correct_fields = 0
+
     for row in data_array:
 
         # the 0th index is the verb in question. Split between verb and meaning (separated by ':' in the data)
@@ -73,11 +76,27 @@ def qna_section(config, survival):
             # get user input
             user_answer = input(question)
             # retrieve answer from answer array
-            answer = f'[{cpr.ITALIC}{row[ii+1]}{cpr.END}]'
-            # if its the example sentence, add in an extraline since they are usually long.
-            if ii == (len(row) - 2):
-                print('\033[1A\033[2K' + question + user_answer + '\n  ' + answer + '\n')
+            correct_answer = row[ii+1].strip()
+            answer_display = f'[{cpr.ITALIC}{correct_answer}{cpr.END}]'
+
+            # check correctness (skip example sentences — last field)
+            is_example = (ii == len(row) - 2)
+            if not is_example:
+                total_fields += 1
+                if user_answer.strip().lower() == correct_answer.lower():
+                    correct_fields += 1
+                    mark = f'{cpr.GREEN}\u2713{cpr.END}'
+                else:
+                    mark = f'{cpr.RED}\u2717{cpr.END}'
+                print('\033[1A\033[2K' + question + user_answer + ' ' + answer_display + ' ' + mark)
             else:
-                print('\033[1A\033[2K' + question + user_answer + ' ' + answer)
+                # example sentence — just show the answer
+                print('\033[1A\033[2K' + question + user_answer + '\n  ' + answer_display + '\n')
+
+    # score summary
+    if total_fields > 0:
+        percentage = int(correct_fields / total_fields * 100)
+        print(prompt['You scored %s (%s%%).'] % (str(correct_fields), str(percentage)))
+
     # end
     print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
