@@ -32,6 +32,10 @@ def qna_section(config, survival):
     # enter survival mode. Default is 3 lives.
     if survival:
         current_hearts = int(config.artikel_challenge.hearts)
+        if current_hearts <= 0:
+            current_hearts = 3
+        elif current_hearts > 10:
+            current_hearts = 10
         print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
         print(prompt['What are the correct articles for these nouns? [der/die/das]'])
         # survival score
@@ -41,7 +45,7 @@ def qna_section(config, survival):
         # initialise array for wrong answers
         wrong_questions, wrong_answers = [], []
         # ask questions
-        wrong_questions, wrong_answers, current_hearts, questions_answered = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, int(config.artikel_challenge.hearts))
+        wrong_questions, wrong_answers, current_hearts, questions_answered = ask_question_survival(questions, answers, wrong_questions, wrong_answers, current_hearts, current_hearts)
         # update score. You have either completed the entire challenge or have used up all your hearts.
         survival_score = questions_answered - len(wrong_answers)
         # analysis
