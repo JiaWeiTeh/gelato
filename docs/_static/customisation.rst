@@ -1,1 +1,0 @@
-.. highlight:: rest.. _sec-customisation:Customising articles====================

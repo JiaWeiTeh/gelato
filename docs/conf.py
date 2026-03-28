@@ -6,10 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'gelato'
-copyright = '2023, Jia Wei Teh'
+project = 'GELATO'
+copyright = '2023-2026, Jia Wei Teh'
 author = 'Jia Wei Teh'
 release = '1.2'
+version = '1.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
