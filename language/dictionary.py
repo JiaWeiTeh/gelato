@@ -43,6 +43,10 @@ prompt_raw = {
         'cn': '冠詞（挑战）',
         },
 
+    'Verben (Practice)':{
+        'cn': '动词（练习）',
+        },
+
     'Settings':{
         'cn': '设置',
         },

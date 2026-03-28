@@ -15,7 +15,7 @@ from language.dictionary import prompt
 import verben.verben_functions as verben_functions
 
 
-def run(config, survival):
+def run(config):
     # rerunning is by default False.
     is_rerun = False
     # loop, because users have option to keep doing, or to exit.
@@ -34,10 +34,7 @@ def run(config, survival):
             if see_dict:
                 print(prompt['\nHere is a preview of your dictionary:\n'])
                 print(tabulate(df, headers=["Infinitiv", "Präsens", "Präteritum", "Perfekt", "Beispielsatz"], tablefmt='fancy_grid'))
-        if survival:
-            verben_functions.qna_section(config, survival=True)
-        else:
-            verben_functions.qna_section(config, survival=False)
+        verben_functions.qna_section(config)
         # rerun?
         rerun_message = prompt['Congratulations! You have successfully completed the entire exercise. Would you like to redo the exercises?']
         is_rerun = query.yes_no(rerun_message, 'no')

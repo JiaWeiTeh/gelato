@@ -83,7 +83,7 @@ def mode_selection(config):
 
     modes_dict = {'1': prompt['Article'],
                   '2': prompt['Article (Challenge)'],
-                  '3': 'Verben (Practice)',
+                  '3': prompt['Verben (Practice)'],
                   '4': prompt['Settings'],
                   '0': prompt['Exit']
                   }
@@ -115,7 +115,7 @@ def mode_selection(config):
             artikel.run(config, survival=True)
         elif input_mode == '3':
             print(prompt['\nEntering %s mode....\n'] % true_mode)
-            verben.run(config, survival=True)
+            verben.run(config)
         elif input_mode == '4':
             settings.edit_param()
         elif input_mode == '0':
