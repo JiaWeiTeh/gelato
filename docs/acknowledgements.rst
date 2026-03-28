@@ -1,1 +1,6 @@
-.. highlight:: rest.. _sec-acknowledgements:Acknowledgements================Special shout-out to the German language.
+.. _sec-acknowledgements:
+
+Acknowledgements
+================
+
+Special shout-out to the German language.
