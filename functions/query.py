@@ -8,8 +8,9 @@ Created on Thu Jul 13 08:50:36 2023
 This script contains functions that set up queries.
 """
 
-def yes_no(question, default = "yes"):
-    
+
+def yes_no(question, default="yes"):
+
     # valid answers
     good_answers = {"yes": True,
                     "y": True,
@@ -21,15 +22,15 @@ def yes_no(question, default = "yes"):
                     "nein": False,
                     "buyao": False
                     }
-    # set cases for different prompt 
-    if default == None:
+    # set cases for different prompt
+    if default is None:
         prompt = ' (y/n): '
     elif default == "yes":
         prompt = ' (Y/n): '
     elif default == "no":
         prompt = ' (y/N): '
     else:
-        raise Exception('invalid default answer for \'%s\''%question)
+        raise ValueError(f'invalid default answer for {question!r}')
     # query message
     query = question + prompt
     # loop until a satisfactory answer is given.
@@ -40,9 +41,4 @@ def yes_no(question, default = "yes"):
         elif answer in good_answers:
             return good_answers[answer]
         else:
-            print("Please respond with 'yes' or 'no' " "(or 'y' or 'n').")
-    return
-
-
-
-
+            print("Please respond with 'yes' or 'no' (or 'y' or 'n').")
