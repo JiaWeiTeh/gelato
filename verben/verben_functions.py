@@ -23,36 +23,29 @@ def load_file():
     return load_excel("verben.xlsx")
 
 
-def qna_section(config, survival):
+def qna_section(config):
 
-    # read csv
+    # Read each line as a single string (delimiter='\t' acts as "no split"
+    # since the CSV has no tab characters). We split manually below because
+    # the last column (example sentence) may contain commas.
     data_full = np.genfromtxt(DATA_DIR / "verben.csv",
-                               delimiter='\t',
+                              delimiter='\t',
                               encoding="utf8", dtype=None)
-    data_array_temporary = data_full[1:]
-    # needs split because our delimiter was '\t'.
     header_array = data_full[0].split(',')
+    data_array_temporary = data_full[1:]
 
-    # Now, ideally we would like to split the data into different columns.
-    # However, since we are dealling with strings, that means sentences may
-    # include ',' characters. Since we have hardcoded that the sentences must
-    # be at the last columnm, we can simply say that whatever is past a certain column
-    # has to all concatenate. Here is exactly what is happening.
-
-    # declare array
-    data_array = np.ones((len(data_array_temporary), len(header_array)), dtype=object)
+    # Split each row by comma, merging trailing fields into the last
+    # column to handle commas within example sentences.
+    num_cols = len(header_array)
+    data_array = np.ones((len(data_array_temporary), num_cols), dtype=object)
 
     for ii in range(len(data_array)):
-        # check if there is more than allowed collumns
-        if len(data_array_temporary[ii].split(',')) > len(header_array):
-            # everything until the column before last stays the same
-            data_array[ii][:len(header_array)-1] = data_array_temporary[ii].split(',')[:len(header_array)-1]
-            # the last row, concatenate the rest
-            data_array[ii][-1] = ','.join(data_array_temporary[ii].split(',')[len(header_array)-1:])
-            # cleaning since there are '"' characters sometimes.
-            data_array[ii][-1] = data_array[ii][-1].replace('"', '')
+        fields = data_array_temporary[ii].split(',')
+        if len(fields) > num_cols:
+            data_array[ii][:num_cols-1] = fields[:num_cols-1]
+            data_array[ii][-1] = ','.join(fields[num_cols-1:]).replace('"', '')
         else:
-            data_array[ii] = data_array_temporary[ii].split(',')
+            data_array[ii] = fields
 
     # randomise for QnA, plus set the number of questions
     data_array = set_number_single(randomiser(data_array), config)

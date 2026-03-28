@@ -32,14 +32,10 @@ def update_scoreboard(currentScore, fname='artikel'):
     scoreboard_path = DATA_DIR / f"{fname}_scoreboard.csv"
     # if file is not empty, then this try block will fail.
     try:
-        # name
-        top_names = np.array(list(list(pd.read_csv(scoreboard_path, header=None).items())[1][1]))
-        # top score
-        top_scores = list(pd.read_csv(scoreboard_path, header=None).items())[0][1]
-        # pure score
-        top_scores = list(map(lambda x: int(x.replace(" pts", "")), top_scores))
-        # top time
-        top_times = list(pd.read_csv(scoreboard_path, header=None).items())[2][1]
+        df = pd.read_csv(scoreboard_path, header=None)
+        top_names = list(df[1])
+        top_scores = list(map(lambda x: int(x.replace(" pts", "")), df[0]))
+        top_times = list(df[2])
 
         if np.where(currentScore > np.array(top_scores))[0].size > 0 or len(top_scores) < 3:
             name = ask_name()
