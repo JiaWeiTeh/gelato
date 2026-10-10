@@ -19,16 +19,16 @@ prompt_raw = {
         'cn':  '欢迎使用',
         },
 
-    '[Version 1.2] July 2023. All rights reserved.':{
-        'cn': '[版本 1.2] 2023年7月。版权所有。',
+    '[Version 1.2] Free software under the GNU GPL v3.':{
+        'cn': '[版本 1.2] 自由软件，基于 GNU GPL v3 许可证发布。',
         },
 
     'Here are the available learning modes for GELATO:':{
         'cn': '以下是GELATO可用的学习模式：',
         },
 
-    'To quit, press CRTL+C':{
-        'cn': '如果您想随时退出，请按CRTL+C键',
+    'To quit, press CTRL+C':{
+        'cn': '如果您想随时退出，请按CTRL+C键',
         },
 
     'Enter quiz mode (number): ':{

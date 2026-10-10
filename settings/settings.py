@@ -8,6 +8,7 @@ This script retrieves the parameters.
 """
 
 import os
+import shlex
 import subprocess
 from pathlib import Path
 import yaml
@@ -38,5 +39,10 @@ def get_param():
 
 
 def edit_param():
-    editor = os.environ.get('EDITOR', 'nano')
-    subprocess.run([editor, str(_SETTINGS_FILE)])
+    """Open settings.yml in the user's editor ($EDITOR, else nano, or notepad on Windows)."""
+    default_editor = 'notepad' if os.name == 'nt' else 'nano'
+    editor = shlex.split(os.environ.get('EDITOR', '')) or [default_editor]
+    try:
+        subprocess.run(editor + [str(_SETTINGS_FILE)])
+    except FileNotFoundError:
+        print(f"Could not launch the editor '{editor[0]}'. Edit the file manually: {_SETTINGS_FILE}")

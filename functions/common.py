@@ -53,6 +53,7 @@ def set_number_single(data_array, config):
     """Prompt user for number of questions and slice a single data array.
 
     Used by verben mode where questions/answers are in one array.
+    Pressing Enter at the prompt uses every available row.
     """
     max_questions = len(data_array)
     user_number = _ask_number_of_questions(max_questions)
@@ -63,19 +64,35 @@ def set_number_pair(questions, answers, config):
     """Prompt user for number of questions and slice parallel arrays.
 
     Used by artikel mode where questions and answers are separate arrays.
+    Pressing Enter at the prompt uses ``artikel_normal.def_qs`` from
+    settings.yml when it is set, otherwise every available row.
     """
     max_questions = len(questions)
-    user_number = _ask_number_of_questions(max_questions)
+    user_number = _ask_number_of_questions(max_questions, _default_questions(config))
     return questions[:user_number], answers[:user_number]
 
 
-def _ask_number_of_questions(max_questions):
-    """Shared input logic: ask user for a valid positive integer, capped at max."""
+def _default_questions(config):
+    """Return ``artikel_normal.def_qs`` from settings if it is a positive integer, else None."""
+    section = getattr(config, 'artikel_normal', None)
+    value = getattr(section, 'def_qs', None)
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        return None
+    return value
+
+
+def _ask_number_of_questions(max_questions, default=None):
+    """Shared input logic: ask user for a valid positive integer, capped at max.
+
+    Empty input falls back to ``default`` (or to ``max_questions`` when no
+    default is given).
+    """
+    fallback = default if default is not None else max_questions
     user_number = input(prompt['Please indicate the number of questions for your quiz: '])
     while True:
         if user_number == "":
-            print('No input detected.')
-            user_number = max_questions
+            print(f'No input detected. Using {min(fallback, max_questions)} questions.')
+            user_number = fallback
             break
         else:
             try:
@@ -88,6 +105,7 @@ def _ask_number_of_questions(max_questions):
 
     user_number = int(user_number)
     if user_number >= max_questions:
-        print(f'We will set the number of questions to the maximum limit. (maximum = {max_questions})')
+        if user_number > max_questions:
+            print(f'We will set the number of questions to the maximum limit. (maximum = {max_questions})')
         user_number = max_questions
     return user_number

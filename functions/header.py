@@ -21,7 +21,7 @@ def display(config, style='3'):
     if config.general.name is not None:
         print(f'\t\t{prompt["Hello"]} {config.general.name[:10]}!')
     print(f'\t\t{prompt["Welcome to"]}{cpr.BOLD} \033[32m{link("https://github.com/JiaWeiTeh/gelato", "GELATO")}{cpr.END}\033[39m (GErman Learning Assist TOol)')
-    print(f'\t\t{prompt["[Version 1.2] July 2023. All rights reserved."]}')
+    print(f'\t\t{prompt["[Version 1.2] Free software under the GNU GPL v3."]}')
     print('\t\t--------------------------------------------------')
     print(f'\t\t{prompt["Here are the available learning modes for GELATO:"]}\n')
 
@@ -90,7 +90,7 @@ def mode_selection(config):
     for key, value in modes_dict.items():
         print(f'\t\t{key}: {value}')
 
-    print(f'\n\t\t{cpr.RED}{cpr.BOLD}{prompt["To quit, press CRTL+C"]}{cpr.END}')
+    print(f'\n\t\t{cpr.RED}{cpr.BOLD}{prompt["To quit, press CTRL+C"]}{cpr.END}')
     print('\t\t--------------------------------------------------')
 
     # user select mode
@@ -119,6 +119,7 @@ def mode_selection(config):
         elif input_mode == '4':
             settings.edit_param()
         elif input_mode == '0':
-            sys.exit(prompt['The program will now terminate.'])
+            print(prompt['The program will now terminate.'])
+            sys.exit(0)
     else:
         print(prompt['Quiz mode not recognised. The program will now terminate.'])
