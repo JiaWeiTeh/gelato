@@ -6,10 +6,10 @@ Installation
 Requirements
 ------------
 
-- Python 3.8 or later
+- Python 3.9 or later
 - pip (Python package manager)
 
-GELATO depends on the following packages (installed automatically via ``pip``):
+GELATO depends on the following packages:
 
 - ``numpy``
 - ``pandas``
@@ -28,37 +28,37 @@ The easiest way to get a copy is via `git <https://git-scm.com/>`_:
    $ git clone https://github.com/JiaWeiTeh/gelato.git
    $ cd gelato
 
+Alternatively, download the ZIP from the GitHub page ("Code" > "Download ZIP") and unpack it.
+
 Install
 -------
 
-Install GELATO and its dependencies with pip:
-
-.. code-block:: console
-
-   $ pip install .
-
-Or, if you prefer to install in development mode (editable):
-
-.. code-block:: console
-
-   $ pip install -e .
-
-You can also install dependencies directly without installing the package:
+Install the dependencies with pip (a virtual environment is recommended):
 
 .. code-block:: console
 
    $ pip install -r requirements.txt
 
+Optionally, install GELATO itself in editable mode. This adds a ``gelato``
+command that you can run from any directory:
+
+.. code-block:: console
+
+   $ pip install -e .
+
+GELATO reads its word lists and settings from the project folder, so keep the
+folder where it is after installing.
+
 Run
 ---
 
-After installation, run GELATO from the project root:
+From the project folder:
 
 .. code-block:: console
 
    $ python gelato.py
 
-Or, if installed via ``pip install``:
+Or, if you installed it with ``pip install -e .``:
 
 .. code-block:: console
 

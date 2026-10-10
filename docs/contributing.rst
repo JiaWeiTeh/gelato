@@ -39,7 +39,7 @@ Development Setup
 Dependencies
 ------------
 
-Runtime dependencies (installed via ``pip install .``):
+Runtime dependencies (installed via ``pip install -r requirements.txt`` or ``pip install -e .``):
 
 - ``numpy`` -- array operations, shuffling, scoring
 - ``pandas`` -- Excel file loading, CSV reading, scoreboard display
@@ -65,7 +65,7 @@ Project Structure
 
    gelato/
    ├── gelato.py                   # Main entry point
-   ├── setup.py                    # Package setup and entry point
+   ├── pyproject.toml              # Package metadata and the ``gelato`` command
    ├── requirements.txt            # Runtime dependencies
    │
    ├── artikel/                    # Article quiz module

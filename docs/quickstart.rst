@@ -3,11 +3,13 @@
 Quick Start
 ===========
 
-Once you have GELATO installed (see :ref:`sec-installation`), you can start it by running:
+Once you have GELATO installed (see :ref:`sec-installation`), start it from the project folder:
 
 .. code-block:: console
 
    $ python gelato.py
+
+(or simply ``gelato`` if you installed it with ``pip install -e .``)
 
 You will be greeted with a welcome screen and a list of available modes:
 
