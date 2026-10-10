@@ -1,0 +1,6 @@
+# Normalise line endings to LF inside the repository.
+* text=auto eol=lf
+*.bat text eol=crlf
+
+# Binary files
+*.xlsx binary
