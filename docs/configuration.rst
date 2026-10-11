@@ -25,6 +25,8 @@ Configuration File
    artikel_challenge:
        hearts: 3
 
+Any option that is missing from the file falls back to its default value.
+
 General
 -------
 

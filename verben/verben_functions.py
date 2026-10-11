@@ -8,10 +8,9 @@ Created on Wed Nov  8 20:17:53 2023
 This script contains functions that are used to run verben.py
 """
 
-import numpy as np
 from language.dictionary import prompt
 from functions.terminal_prints import cprint as cpr
-from functions.common import load_excel, randomiser, set_number_single, DATA_DIR
+from functions.common import load_excel, randomiser, set_number
 
 
 # TODO:
@@ -20,48 +19,40 @@ from functions.common import load_excel, randomiser, set_number_single, DATA_DIR
 
 
 def load_file():
-    return load_excel("verben.xlsx")
+        
+    # Reading an excel file
+    data = load_excel("verben.xlsx")
+    return data
 
 
-def qna_section(config):
-
-    # Read each line as a single string (delimiter='\t' acts as "no split"
-    # since the CSV has no tab characters). We split manually below because
-    # the last column (example sentence) may contain commas.
-    data_full = np.genfromtxt(DATA_DIR / "verben.csv",
-                              delimiter='\t',
-                              encoding="utf8", dtype=None)
-    header_array = data_full[0].split(',')
-    data_array_temporary = data_full[1:]
-
-    # Split each row by comma, merging trailing fields into the last
-    # column to handle commas within example sentences.
-    num_cols = len(header_array)
-    data_array = np.ones((len(data_array_temporary), num_cols), dtype=object)
-
-    for ii in range(len(data_array)):
-        fields = data_array_temporary[ii].split(',')
-        if len(fields) > num_cols:
-            data_array[ii][:num_cols-1] = fields[:num_cols-1]
-            data_array[ii][-1] = ','.join(fields[num_cols-1:]).replace('"', '')
-        else:
-            data_array[ii] = fields
-
+def qna_section(config, survival):
+    
+    # read data. The headers are the questions (Präsens, Präteritum, ...)
+    data = load_file()
+    header_array = list(data.columns)
+    data_array = data.to_numpy()
+            
+    # convert dictionary to list
+    # get keys and values
+    
     # randomise for QnA, plus set the number of questions
-    data_array = set_number_single(randomiser(data_array), config)
-
+    data_array = randomiser(data_array)
+    data_array = data_array[:set_number(len(data_array))]
+    
     # begin
     print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
-
-    total_fields = 0
-    correct_fields = 0
-
+    # for the score at the end
+    correct, total = 0, 0
+    
     for row in data_array:
-
+        
         # the 0th index is the verb in question. Split between verb and meaning (separated by ':' in the data)
-        verb, meaning = row[0].split(':')
-
-        print(f'Your verb is: {cpr.BOLD}{verb.upper()}{cpr.END} ({cpr.ITALIC}{cpr.GREEN}{meaning}{cpr.END})')
+        # If there is no ':', then there is just no meaning to show.
+        if ':' in row[0]:
+            verb, meaning = row[0].split(':', 1)
+            print(f'Your verb is: {cpr.BOLD}{verb.strip().upper()}{cpr.END} ({cpr.ITALIC}{cpr.GREEN}{meaning.strip()}{cpr.END})')
+        else:
+            print(f'Your verb is: {cpr.BOLD}{row[0].upper()}{cpr.END}')
         # the remaining index are the other verb forms. We just loop through them.
         for ii in range(len(row)-1):
             # get question from header
@@ -69,27 +60,21 @@ def qna_section(config):
             # get user input
             user_answer = input(question)
             # retrieve answer from answer array
-            correct_answer = row[ii+1].strip()
-            answer_display = f'[{cpr.ITALIC}{correct_answer}{cpr.END}]'
-
-            # check correctness (skip example sentences — last field)
-            is_example = (ii == len(row) - 2)
-            if not is_example:
-                total_fields += 1
-                if user_answer.strip().lower() == correct_answer.lower():
-                    correct_fields += 1
-                    mark = f'{cpr.GREEN}\u2713{cpr.END}'
-                else:
-                    mark = f'{cpr.RED}\u2717{cpr.END}'
-                print('\033[1A\033[2K' + question + user_answer + ' ' + answer_display + ' ' + mark)
+            answer = f'[{cpr.ITALIC}{row[ii+1]}{cpr.END}]'
+            # if its the example sentence, add in an extraline since they are usually long.
+            if ii == (len(row) - 2):
+                print('\033[1A\033[2K' + question + user_answer + '\n  ' + answer + '\n')
             else:
-                # example sentence — just show the answer
-                print('\033[1A\033[2K' + question + user_answer + '\n  ' + answer_display + '\n')
-
-    # score summary
-    if total_fields > 0:
-        percentage = int(correct_fields / total_fields * 100)
-        print(prompt['You scored %s (%s%%).'] % (str(correct_fields), str(percentage)))
-
+                # check the answer (the example sentence is not checked)
+                total += 1
+                if user_answer.strip().lower() == row[ii+1].lower():
+                    correct += 1
+                    mark = cpr.GREEN + '\u2713' + cpr.END
+                else:
+                    mark = cpr.RED + '\u2717' + cpr.END
+                print('\033[1A\033[2K' + question + user_answer + ' ' + answer + ' ' + mark)
+    # score
+    if total > 0:
+        print(prompt['You scored %s (%s%%).']%(str(correct), str(int(correct/total*100))))
     # end
     print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)

@@ -56,7 +56,7 @@ each value is a dictionary of translations keyed by language code:
    }
 
 At startup, GELATO reads the configured language from ``settings.yml`` and builds
-a flat lookup dictionary using ``build_prompt()``:
+a flat lookup dictionary called ``prompt``:
 
 - **English (``en``):** Each key maps to itself (the English text *is* the key).
 - **Cat mode (``katze``):** Each key maps to a random meow string.
@@ -82,5 +82,5 @@ To add support for a new language (e.g. French, ``fr``):
    automatically fall back to the English text.
 4. Set ``def_language: fr`` in ``settings/settings.yml`` to activate it.
 
-No code changes are needed beyond adding the translation strings -- the
-``build_prompt()`` function handles arbitrary language codes automatically.
+No code changes are needed beyond adding the translation strings. Any language
+code works, as long as the translations use that code as their key.

@@ -22,8 +22,11 @@ def run():
         header.mode_selection(config)
     except KeyboardInterrupt:
         # end if ctrl+c command is used.
-        print(prompt.get('\nExiting GELATO...', '\nExiting GELATO...'))
+        print(prompt['\nExiting GELATO...'])
+    
+    return
 
 
+# run() is also what the 'gelato' command calls (see pyproject.toml)
 if __name__ == '__main__':
     run()
