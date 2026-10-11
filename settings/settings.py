@@ -77,6 +77,8 @@ def edit_param():
     try:
         subprocess.run(editor.split() + [str(settings_path)])
     except FileNotFoundError:
-        print(f'Could not open {editor}. Please edit this file manually: {settings_path}')
+        # imported here, because dictionary.py needs this file to be loaded first
+        from language.dictionary import prompt
+        print(prompt['Could not open %s. Please edit this file manually: %s']%(editor, settings_path))
     
     return

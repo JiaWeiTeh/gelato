@@ -40,7 +40,7 @@ def qna_section(config, survival):
     data_array = data_array[:set_number(len(data_array))]
     
     # begin
-    print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
+    print('       ' + '\u2500'*8 + prompt["# Begin quiz #"] + '\u2500'*8 + '\n')
     # for the score at the end
     correct, total = 0, 0
     
@@ -48,11 +48,12 @@ def qna_section(config, survival):
         
         # the 0th index is the verb in question. Split between verb and meaning (separated by ':' in the data)
         # If there is no ':', then there is just no meaning to show.
+        # (no .upper() here, it would turn ß into SS)
         if ':' in row[0]:
             verb, meaning = row[0].split(':', 1)
-            print(f'Your verb is: {cpr.BOLD}{verb.strip().upper()}{cpr.END} ({cpr.ITALIC}{cpr.GREEN}{meaning.strip()}{cpr.END})')
+            print(prompt['Your verb is:'] + f' {cpr.BOLD}{verb.strip()}{cpr.END} ({cpr.ITALIC}{cpr.GREEN}{meaning.strip()}{cpr.END})')
         else:
-            print(f'Your verb is: {cpr.BOLD}{row[0].upper()}{cpr.END}')
+            print(prompt['Your verb is:'] + f' {cpr.BOLD}{row[0]}{cpr.END}')
         # the remaining index are the other verb forms. We just loop through them.
         for ii in range(len(row)-1):
             # get question from header
@@ -77,4 +78,4 @@ def qna_section(config, survival):
     if total > 0:
         print(prompt['You scored %s (%s%%).']%(str(correct), str(int(correct/total*100))))
     # end
-    print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+    print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)

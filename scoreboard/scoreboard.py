@@ -88,7 +88,7 @@ def ask_name():
     while True:
         username = input(prompt["Congratulations on achieving a high score! Please enter your username: "]).strip()
         if len(username) == 0:
-            print("Username cannot be empty. Please try again.")
+            print(prompt["Username cannot be empty. Please try again."])
         elif len(username) > 10:
             print(prompt["Your username exceeds the maximum length of 10 characters. Please try again."])
         else:

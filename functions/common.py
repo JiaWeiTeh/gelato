@@ -43,7 +43,7 @@ def set_number(max_questions, default=None):
     while True:
         # if nothing, set as default
         if user_number == "":
-            print('No input detected. Using %s questions.' % str(min(default, max_questions)))
+            print(prompt['No input detected. Using %s questions.'] % str(min(default, max_questions)))
             user_number = default
             break
         else:
@@ -57,7 +57,7 @@ def set_number(max_questions, default=None):
 
     # case if user provides too large of a value
     if user_number > max_questions:
-        print('We will set the number of questions to the maximum limit. (maximum = %s)' % str(max_questions))
+        print(prompt['We will set the number of questions to the maximum limit. (maximum = %s)'] % str(max_questions))
         user_number = max_questions
 
     return user_number

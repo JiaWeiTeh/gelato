@@ -10,9 +10,12 @@ This is the main file.
 import functions.header as header
 import settings.settings as settings
 from language.dictionary import prompt
+from colorama import just_fix_windows_console
 
 
 def run():
+    # so that the colours and the line overwriting also work in the Windows terminal
+    just_fix_windows_console()
     # get parameters
     config = settings.get_param()
     # display header

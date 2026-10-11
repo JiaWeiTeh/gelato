@@ -24,8 +24,8 @@ prompt_raw = {
         'cn':  '欢迎使用',
         },
     
-    '[Version 1.2] Free software under the GNU GPL v3.':{
-        'cn': '[版本 1.2] 自由软件，基于 GNU GPL v3 许可证发布。',
+    '[Version %s] Free software under the GNU GPL v3.':{
+        'cn': '[版本 %s] 自由软件，基于 GNU GPL v3 许可证发布。',
         },
     
     'Here are the available learning modes for GELATO:':{
@@ -60,8 +60,8 @@ prompt_raw = {
         'cn': '\n进入%s模式....\n',
         },
     
-    'Quiz mode not recognised. The program will now terminate.':{
-        'cn': '无法识别测验模式。程序将终止。',
+    'Quiz mode not recognised. Please try again.':{
+        'cn': '无法识别测验模式。请重试。',
         },
     
     'The program will now terminate.':{
@@ -143,8 +143,36 @@ prompt_raw = {
         'cn': "\n这是您的字典预览: \n",
         },
     
-    'The number of questions exceeds the maximum allowable rows in the provided wordbase (maximum = %s).\nWe will now set the number of questions to the maximum limit.':{
-        'cn': '问题数量超过了所提供的单词库允许的最大行数（最大值 = %s）。问题数量将设置为最大限制。',
+    'No input detected. Using %s questions.':{
+        'cn': '未检测到输入。将使用%s道题。',
+        },
+    
+    'We will set the number of questions to the maximum limit. (maximum = %s)':{
+        'cn': '题数将设为最大值（最大值 = %s）。',
+        },
+    
+    'Congratulations.':{
+        'cn': '恭喜！',
+        },
+    
+    'Your verb is:':{
+        'cn': '您的动词是：',
+        },
+    
+    "Please respond with 'yes' or 'no' (or 'y' or 'n').":{
+        'cn': "请回答 'yes' 或 'no'（或 'y'、'n'）。",
+        },
+    
+    'Username cannot be empty. Please try again.':{
+        'cn': '用户名不能为空。请重新输入。',
+        },
+    
+    'Could not open %s. Please edit this file manually: %s':{
+        'cn': '无法打开 %s。请手动编辑此文件： %s',
+        },
+    
+    'Name and language changes apply the next time you start GELATO.':{
+        'cn': '名字和语言的更改将在下次启动 GELATO 时生效。',
         },
     
     'Verben (Practice)':{

@@ -14,6 +14,10 @@ from language.dictionary import prompt
 from functions.terminal_prints import cprint as cpr
 
 
+# version of GELATO. pyproject.toml also reads it from here.
+version = '1.2'
+
+
 def display(config, style = '3'):
     
     # print the chosen cone
@@ -22,7 +26,7 @@ def display(config, style = '3'):
     if config.general.name != None:
         print('\t\t'+prompt['Hello']+' %s!'%config.general.name[:10])
     print('\t\t'+prompt['Welcome to']+ cpr.BOLD + ' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+ cpr.END + '\033[39m (GErman Learning Assist TOol)')
-    print('\t\t'+prompt['[Version 1.2] Free software under the GNU GPL v3.'])
+    print('\t\t'+prompt['[Version %s] Free software under the GNU GPL v3.']%version)
     print('\t\t--------------------------------------------------')
     print('\t\t'+prompt['Here are the available learning modes for GELATO:']+'\n')
 
@@ -103,40 +107,52 @@ def mode_selection(config):
                   '4': prompt['Settings'],
                   '0': prompt['Exit']
                   }
-    for key, value in modes_dict.items():
-        print('\t\t'+str(key)+':', value)
-        
-    print('\n\t\t'+ cpr.RED + cpr.BOLD + prompt['To quit, press CTRL+C'] + cpr.END)
-    print('\t\t--------------------------------------------------')
-
-    # user select mode
-    input_mode = input('\n'+prompt['Enter quiz mode (number): ']).replace(" ", "")
-    # some sleep so that the output is not too quick
-    time.sleep(.25)
-    # check if modes exist
-    if input_mode in list(modes_dict.keys()):
-        true_mode = modes_dict[input_mode]
-        modeExist = True
-    else:
-        modeExist = False
-    # mode cases
-    if modeExist:
-        if input_mode == '1':
-            print(prompt['\nEntering %s mode....\n']%true_mode)
-            time.sleep(.75)
-            artikel.run(config, survival=False)
-        elif input_mode == '2':
-            print(prompt['\nEntering %s mode....\n']%true_mode)
-            time.sleep(.75)
-            artikel.run(config, survival=True)        
-        elif input_mode == '3':
-            print(prompt['\nEntering %s mode....\n']%true_mode)
-            verben.run(config, survival=True)
-        elif input_mode == '4':
-            settings.edit_param()
-        elif input_mode == '0':
-            print(prompt['The program will now terminate.'])
-            sys.exit()
-    else:
-        print(prompt['Quiz mode not recognised. The program will now terminate.'])
-    return
+    # keep going until the user exits
+    show_menu = True
+    while True:
+        if show_menu:
+            for key, value in modes_dict.items():
+                print('\t\t'+str(key)+':', value)
+                
+            print('\n\t\t'+ cpr.RED + cpr.BOLD + prompt['To quit, press CTRL+C'] + cpr.END)
+            print('\t\t--------------------------------------------------')
+    
+        # user select mode
+        input_mode = input('\n'+prompt['Enter quiz mode (number): ']).replace(" ", "")
+        # some sleep so that the output is not too quick
+        time.sleep(.25)
+        # check if modes exist
+        if input_mode in list(modes_dict.keys()):
+            true_mode = modes_dict[input_mode]
+            modeExist = True
+        else:
+            modeExist = False
+        # mode cases
+        if modeExist:
+            if input_mode == '1':
+                print(prompt['\nEntering %s mode....\n']%true_mode)
+                time.sleep(.75)
+                artikel.run(config, survival=False)
+            elif input_mode == '2':
+                print(prompt['\nEntering %s mode....\n']%true_mode)
+                time.sleep(.75)
+                artikel.run(config, survival=True)        
+            elif input_mode == '3':
+                print(prompt['\nEntering %s mode....\n']%true_mode)
+                verben.run(config, survival=True)
+            elif input_mode == '4':
+                settings.edit_param()
+                # reload, so that new hearts and number of questions are used right away
+                config = settings.get_param()
+                print(prompt['Name and language changes apply the next time you start GELATO.'])
+            elif input_mode == '0':
+                print(prompt['The program will now terminate.'])
+                sys.exit()
+            # back to the menu
+            print('\n\t\t--------------------------------------------------')
+            print('\t\t'+prompt['Here are the available learning modes for GELATO:']+'\n')
+            show_menu = True
+        else:
+            # ask again, no need to show the whole menu again
+            print(prompt['Quiz mode not recognised. Please try again.'])
+            show_menu = False

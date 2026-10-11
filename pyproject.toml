@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gelato"
-version = "1.2.0"
+dynamic = ["version"]
 description = "GErman Learning Assist TOol: a terminal quiz for German articles and verb conjugations"
 readme = "README.md"
 license = "GPL-3.0-or-later"
@@ -15,11 +15,11 @@ dependencies = [
     "tabulate",
     "openpyxl",
     "pyyaml",
+    "colorama",
 ]
 
 [project.urls]
 Homepage = "https://github.com/JiaWeiTeh/gelato"
-Documentation = "https://gelato-language.readthedocs.io/"
 
 [project.scripts]
 gelato = "gelato:run"
@@ -27,3 +27,11 @@ gelato = "gelato:run"
 [tool.setuptools]
 py-modules = ["gelato"]
 packages = ["artikel", "functions", "language", "scoreboard", "settings", "verben"]
+
+# the version number lives in functions/header.py, next to the banner that shows it
+[tool.setuptools.dynamic]
+version = {attr = "functions.header.version"}
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

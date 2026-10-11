@@ -39,7 +39,7 @@ def qna_section(config, survival):
         current_hearts = int(config.artikel_challenge.hearts)
         # at least 1, at most 10 hearts.
         current_hearts = min(max(current_hearts, 1), 10)
-        print('       ' + '\u2500'*8 + "# Begin quiz #" + '\u2500'*8 + '\n')
+        print('       ' + '\u2500'*8 + prompt["# Begin quiz #"] + '\u2500'*8 + '\n')
         # print('Was ist der richtige Artikel für dieses Nomen?')
         print(prompt['What are the correct articles for these nouns? [der/die/das]'])
         # survival score
@@ -60,10 +60,14 @@ def qna_section(config, survival):
         if current_hearts > 0:
             footer.win()
             print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
-            print('Congratulations.')
+            print(prompt['Congratulations.'])
             scoreboard.update_scoreboard(survival_score)
             scoreboard.show_scoreboard()
-            print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+            # still show the mistakes, if there were any
+            if len(wrong_answers) > 0:
+                print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
+                print(analysis_message)
+            print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
         elif current_hearts == 0:
             # score
             print(prompt['You have successfully answered %s questions correctly!']%str(survival_score))
@@ -71,7 +75,7 @@ def qna_section(config, survival):
             scoreboard.show_scoreboard()
             print(prompt['Here are the correct answers for the part(s) where you\'ve made mistake(s):'])
             print(analysis_message)
-            print('        ' + '\u2500'*8 + "# End quiz #" + '\u2500'*8)
+            print('        ' + '\u2500'*8 + prompt["# End quiz #"] + '\u2500'*8)
     
     elif not survival:
         number = set_number(len(questions), config.artikel_normal.def_qs)

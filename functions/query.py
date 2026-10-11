@@ -8,6 +8,8 @@ Created on Thu Jul 13 08:50:36 2023
 This script contains functions that set up queries.
 """
 
+import language.dictionary as dictionary
+
 def yes_no(question, default = "yes"):
     
     # valid answers
@@ -40,7 +42,7 @@ def yes_no(question, default = "yes"):
         elif answer in good_answers:
             return good_answers[answer]
         else:
-            print("Please respond with 'yes' or 'no' " "(or 'y' or 'n').")
+            print(dictionary.prompt["Please respond with 'yes' or 'no' (or 'y' or 'n')."])
     return
 
 
