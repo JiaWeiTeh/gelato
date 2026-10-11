@@ -4,9 +4,9 @@ Customisation
 =============
 
 GELATO loads its quiz data from Excel (``.xlsx``) files stored in the ``data/`` directory.
-You can edit these files to add, remove, or modify words and verbs. At startup, each
-Excel file is automatically converted to a CSV for internal use -- you only ever need
-to edit the ``.xlsx`` files.
+You can edit these files to add, remove, or modify words and verbs. GELATO reads the
+``.xlsx`` files directly each time a quiz starts, so just save the file and run it again.
+Empty cells are treated as empty text, and spaces around entries are ignored.
 
 .. _sec-customisation-artikel:
 
@@ -107,8 +107,8 @@ This file powers the Verben (Practice) quiz mode.
 
 **Important:**
 
-- The ``Infinitiv`` column **must** contain a colon separating the verb from its
-  meaning (e.g. ``gehen:to go``). This is how GELATO splits the display.
+- The ``Infinitiv`` column should contain a colon separating the verb from its
+  meaning (e.g. ``gehen:to go``). Without a colon, only the verb is shown.
 - Example sentences may contain commas -- GELATO handles this correctly.
 - All conjugation fields are checked case-insensitively during the quiz.
 
@@ -120,5 +120,4 @@ Adding a New Word Database
 Currently, GELATO supports two built-in quiz types (articles and verbs). To add
 more words, simply edit the corresponding ``.xlsx`` file in the ``data/`` directory.
 
-The generated ``.csv`` files in ``data/`` are rebuilt automatically each time you
-start a quiz -- you do not need to create or edit them manually.
+Only the ``.xlsx`` files are read. Nothing else needs to be generated or edited.

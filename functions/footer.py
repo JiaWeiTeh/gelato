@@ -6,18 +6,24 @@ Created on Thu Mar 14 16:21:29 2024
 @author: Jia Wei Teh
 """
 
-
 def win():
-
+    
     print(r"""
-                                                                o8o
+                                                                o8o      
                                                                 `"'
-       oooo    ooo  .ooooo.  oooo  oooo       oooo oooo    ooo oooo  ooo. .oo.
-        `88.  .8'  d88' `88b `888  `888        `88. `88.  .8'  `888  `888P"Y88b
-         `88..8'   888   888  888   888         `88..]88..8'    888   888   888
-          `888'    888   888  888   888          `888'`888'     888   888   888
+       oooo    ooo  .ooooo.  oooo  oooo       oooo oooo    ooo oooo  ooo. .oo.  
+        `88.  .8'  d88' `88b `888  `888        `88. `88.  .8'  `888  `888P"Y88b 
+         `88..8'   888   888  888   888         `88..]88..8'    888   888   888 
+          `888'    888   888  888   888          `888'`888'     888   888   888 
            .8'     `Y8bod8P'  `V88V"V8P'          `8'  `8'     o888o o888o o888o
-       .o..P'
-       `Y8P'
-
+       .o..P'                                                                   
+       `Y8P'                                                                    
+          
           """)
+    
+    
+    
+    
+    
+    return 
+

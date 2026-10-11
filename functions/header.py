@@ -14,38 +14,44 @@ from language.dictionary import prompt
 from functions.terminal_prints import cprint as cpr
 
 
-def display(config, style='3'):
-
+def display(config, style = '3'):
+    
+    # print the chosen cone
     cones = {'1': cone1, '2': cone2, '3': cone3}
     cones[style]()
-    if config.general.name is not None:
-        print(f'\t\t{prompt["Hello"]} {config.general.name[:10]}!')
-    print(f'\t\t{prompt["Welcome to"]}{cpr.BOLD} \033[32m{link("https://github.com/JiaWeiTeh/gelato", "GELATO")}{cpr.END}\033[39m (GErman Learning Assist TOol)')
-    print(f'\t\t{prompt["[Version 1.2] Free software under the GNU GPL v3."]}')
+    if config.general.name != None:
+        print('\t\t'+prompt['Hello']+' %s!'%config.general.name[:10])
+    print('\t\t'+prompt['Welcome to']+ cpr.BOLD + ' \033[32m'+link('https://github.com/JiaWeiTeh/gelato', 'GELATO')+ cpr.END + '\033[39m (GErman Learning Assist TOol)')
+    print('\t\t'+prompt['[Version 1.2] Free software under the GNU GPL v3.'])
     print('\t\t--------------------------------------------------')
-    print(f'\t\t{prompt["Here are the available learning modes for GELATO:"]}\n')
+    print('\t\t'+prompt['Here are the available learning modes for GELATO:']+'\n')
+
+    return
 
 
 def cone1():
-
+    
     print(r"""
-       _
-     ,' `,.      ______     ______     __         ______     ______   ______
-     >-.(__)    /\  ___\   /\  ___\   /\ \       /\  __ \   /\__  _\ /\  __ \
-    (_,-' |     \ \ \__ \  \ \  __\   \ \ \____  \ \  __ \  \/_/\ \/ \ \ \/\ \
-      `.  |      \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\    \ \_\  \ \_____\
-        `.|       \/_____/   \/_____/   \/_____/   \/_/\/_/     \/_/   \/_____/
+       _  
+     ,' `,.      ______     ______     __         ______     ______   ______ 
+     >-.(__)    /\  ___\   /\  ___\   /\ \       /\  __ \   /\__  _\ /\  __ \   
+    (_,-' |     \ \ \__ \  \ \  __\   \ \ \____  \ \  __ \  \/_/\ \/ \ \ \/\ \ 
+      `.  |      \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\    \ \_\  \ \_____\ 
+        `.|       \/_____/   \/_____/   \/_____/   \/_/\/_/     \/_/   \/_____/ 
           `
         """)
 
+    return 
+
+
 
 def cone2():
-
+    
     print(r"""
                   .-"`'"-.
                  /        \
-                 |        |      __    ____  _      __   _____  ___
-                 /'---'--`\     / /`_ | |_  | |    / /\   | |  / / \
+                 |        |      __    ____  _      __   _____  ___  
+                 /'---'--`\     / /`_ | |_  | |    / /\   | |  / / \ 
                 |          |    \_\_/ |_|__ |_|__ /_/--\  |_|  \_\_/
                 \.--.---.-./
                 (_.--._.-._)
@@ -53,34 +59,44 @@ def cone2():
                    \=-=-/
                     \=-/
                      \/
-
+                                     
     """)
+    
+    return
+
 
 
 def cone3():
-
+    
     print(r"""
-                   _
-                 ,' `,.      __    ____  _      __   _____  ___
-                 >-.(__)    / /`_ | |_  | |    / /\   | |  / / \
+                   _  
+                 ,' `,.      __    ____  _      __   _____  ___  
+                 >-.(__)    / /`_ | |_  | |    / /\   | |  / / \ 
                 (_,-' |     \_\_/ |_|__ |_|__ /_/--\  |_|  \_\_/
-                  `.  |
-                    `.|
+                  `.  |        
+                    `.|        
                       `
         """)
 
+    return 
 
-def link(url, label=None):
-    if label is None:
+    
+    
+    
+
+
+def link(url, label = None):
+    if label is None: 
         label = url
     parameters = ''
-    # OSC 8 ; params ; URL ST <name> OSC 8 ;; ST
+    # OSC 8 ; params ; URL ST <name> OSC 8 ;; ST 
     escape_mask = '\033]8;{};{}\033\\{}\033]8;;\033\\'
+
     return escape_mask.format(parameters, url, label)
 
 
 def mode_selection(config):
-
+    
     modes_dict = {'1': prompt['Article'],
                   '2': prompt['Article (Challenge)'],
                   '3': prompt['Verben (Practice)'],
@@ -88,38 +104,39 @@ def mode_selection(config):
                   '0': prompt['Exit']
                   }
     for key, value in modes_dict.items():
-        print(f'\t\t{key}: {value}')
-
-    print(f'\n\t\t{cpr.RED}{cpr.BOLD}{prompt["To quit, press CTRL+C"]}{cpr.END}')
+        print('\t\t'+str(key)+':', value)
+        
+    print('\n\t\t'+ cpr.RED + cpr.BOLD + prompt['To quit, press CTRL+C'] + cpr.END)
     print('\t\t--------------------------------------------------')
 
     # user select mode
-    input_mode = input(f'\n{prompt["Enter quiz mode (number): "]}').replace(" ", "")
+    input_mode = input('\n'+prompt['Enter quiz mode (number): ']).replace(" ", "")
     # some sleep so that the output is not too quick
     time.sleep(.25)
     # check if modes exist
-    if input_mode in modes_dict:
+    if input_mode in list(modes_dict.keys()):
         true_mode = modes_dict[input_mode]
-        mode_exist = True
+        modeExist = True
     else:
-        mode_exist = False
+        modeExist = False
     # mode cases
-    if mode_exist:
+    if modeExist:
         if input_mode == '1':
-            print(prompt['\nEntering %s mode....\n'] % true_mode)
+            print(prompt['\nEntering %s mode....\n']%true_mode)
             time.sleep(.75)
             artikel.run(config, survival=False)
         elif input_mode == '2':
-            print(prompt['\nEntering %s mode....\n'] % true_mode)
+            print(prompt['\nEntering %s mode....\n']%true_mode)
             time.sleep(.75)
-            artikel.run(config, survival=True)
+            artikel.run(config, survival=True)        
         elif input_mode == '3':
-            print(prompt['\nEntering %s mode....\n'] % true_mode)
-            verben.run(config)
+            print(prompt['\nEntering %s mode....\n']%true_mode)
+            verben.run(config, survival=True)
         elif input_mode == '4':
             settings.edit_param()
         elif input_mode == '0':
             print(prompt['The program will now terminate.'])
-            sys.exit(0)
+            sys.exit()
     else:
         print(prompt['Quiz mode not recognised. The program will now terminate.'])
+    return

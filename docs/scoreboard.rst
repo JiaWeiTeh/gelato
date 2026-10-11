@@ -12,7 +12,7 @@ How It Works
 1. After completing (or losing) an Article (Challenge) game, your survival score
    is calculated: **questions answered correctly** (total answered minus wrong answers).
 2. If your score is higher than any of the current top three, or fewer than three
-   scores exist, you are prompted for a username.
+   scores exist, you are prompted for a username. A score of 0 is not recorded.
 3. The scoreboard is updated and the top three are displayed in a formatted table.
 
 **Username rules:**

@@ -91,13 +91,12 @@ Project Structure
    │   └── settings.yml            # User configuration file
    │
    ├── language/
-   │   └── dictionary.py           # UI translations (prompt_raw + build_prompt)
+   │   └── dictionary.py           # UI translations (prompt_raw -> prompt)
    │
    ├── data/                       # Word databases and generated files
    │   ├── artikel.xlsx            #   Article quiz source data (user-editable)
    │   ├── verben.xlsx             #   Verb quiz source data (user-editable)
    │   ├── daily_words.xlsx        #   Reserved for future use
-   │   ├── *.csv                   #   Auto-generated at runtime (gitignored)
    │   └── *_scoreboard.csv        #   User scores (gitignored)
    │
    └── docs/                       # Sphinx documentation (this site)
@@ -117,21 +116,21 @@ How It All Fits Together
      └── header.mode_selection()       Show menu, dispatch to:
            │
            ├── artikel.run()           Article quiz (Normal or Challenge)
-           │     ├── load_file()         Excel → CSV via common.load_excel()
+           │     ├── load_file()         Excel → DataFrame via common.load_excel()
            │     ├── qna_section()       Run quiz, compute score
            │     └── scoreboard.*()      Update/show high scores (Challenge only)
            │
            ├── verben.run()            Verb quiz (Practice)
-           │     ├── load_file()         Excel → CSV via common.load_excel()
+           │     ├── load_file()         Excel → DataFrame via common.load_excel()
            │     └── qna_section()       Run quiz, compute score
            │
            └── settings.edit_param()   Open settings.yml in $EDITOR
 
 Key design notes:
 
-- **Excel → CSV pipeline:** Each quiz module calls ``common.load_excel()`` which
-  reads the ``.xlsx`` file and writes a ``.csv`` to ``data/``. The quiz logic then
-  reads the CSV via ``numpy.genfromtxt`` for array-based operations.
+- **Excel loading:** Each quiz module calls ``common.load_excel()`` which reads the
+  ``.xlsx`` file into a DataFrame (empty cells become empty strings, surrounding
+  whitespace is stripped). The quiz logic then works on ``df.to_numpy()``.
 - **Translation system:** ``language/dictionary.py`` exports a module-level ``prompt``
   dict that is initialised once at import time. All modules import ``prompt`` and use
   English keys as lookup keys.

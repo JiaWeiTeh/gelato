@@ -14,7 +14,7 @@ venv/
 env/
 ENV/
 
-# Generated at runtime by GELATO (CSV exports and scoreboards)
+# Scoreboards written by GELATO
 data/*.csv
 
 # Editors, IDEs and operating systems
