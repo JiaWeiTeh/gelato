@@ -7,6 +7,9 @@ Well, meet **GELATO** -- the **GE**\ rman **L**\ earning **A**\ ssist **TO**\ ol
 GELATO is a terminal-based quiz tool for practising German articles (der/die/das) and verb conjugations.
 It features multiple quiz modes, a scoreboard, and full customisation of word databases and UI language.
 
+.. image:: demo.gif
+   :alt: GELATO in action
+
 .. note::
 
    This project is under active development. Contributions and feedback are welcome!
